@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #0d0d0d;
+    background-color: #0d0d0d; /* Màu nền ban đầu của trang chủ */
     color: #f0f0f0;
     display: flex;
     flex-direction: column;
@@ -11,994 +11,1105 @@ body {
     overflow-x: hidden;
     line-height: 1.6;
     font-size: 0.95em;
+    transition: background-color 0.8s ease-out; /* Chỉ chuyển màu nền body */
+    position: relative; /* Quan trọng: để các icon background có thể định vị */
+    z-index: 1; /* Đảm bảo body nằm trên các icon background */
+}
+
+/* Các icon background được tạo bằng JavaScript */
+.background-icon {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: fixed; /* Hoặc absolute nếu muốn cuộn cùng trang */
+    font-size: 150px; /* Kích thước icon */
+    color: #ffe600;
+    opacity: 0; /* Bắt đầu ẩn đi */
+    filter: blur(15px); /* Làm mờ để tạo hiệu ứng background */
+    z-index: -1; /* Đảm bảo nằm dưới tất cả nội dung khác */
+    pointer-events: none;
+    transition: opacity 2s ease-out, transform 2s ease-out, filter 2s ease-out; /* Transition mượt mà */
+    animation: floatAndFade 20s infinite ease-in-out; /* Hoạt ảnh di chuyển nhẹ */
+}
+
+/* Hiệu ứng reveal cho các icon background */
+body.reveal .background-icon {
+    opacity: 0.08; /* Hiển thị nhẹ nhàng */
+    filter: blur(5px); /* Bớt mờ một chút */
+    transform: scale(1); /* Đảm bảo icon hiện rõ ràng */
+}
+
+/* Keyframes cho hiệu ứng nổi nhẹ (float) */
+@keyframes floatAndFade {
+    0% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-10px) scale(1.02); }
+    50% { transform: translateY(0) scale(1); }
+    75% { transform: translateY(10px) scale(0.98); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+/* Màu nền của body khi CV được kích hoạt */
+body.cv-active {
+    background-color: #1a1a1a;
 }
 
 html {
     scroll-behavior: smooth;
 }
 
-.hidden {
-    display: none !important;
-}
-
-/* --- HERO SECTION --- */
-.hero-section {
-    width: 100%;
-    height: 100vh;
-    background-color: #0d0d0d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 50px;
-    box-sizing: border-box;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    position: relative;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.hero-section.hidden {
-    opacity: 0;
-    transform: translateY(-100px);
-    pointer-events: none;
-    height: 0;
-    overflow: hidden;
-}
-
-.hero-content-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
-    width: 90%;
-    max-width: 1350px;
-    flex-wrap: wrap;
-}
-
-.hero-text-content {
-    flex: 1.5;
-    padding-right: 20px;
-    min-width: 300px;
-}
-
-.hero-greeting {
-    color: #bbb;
-    font-size: 1rem;
-    margin-bottom: 10px;
-}
-
-.hero-text-inner {
-    text-align: left;
-    min-width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-grow: 1;
-    padding-right: 20px;
-}
-
-.hero-name {
-    font-size: 4rem;
-    font-weight: 700;
-    color: #e0e0e0;
-    margin-bottom: 10px;
-    line-height: 1.1;
-    white-space: nowrap;
-}
-
-.hero-profession {
-    font-size: 2.6rem;
-    color: #ffe600;
-    font-weight: 600;
-    margin-bottom: 30px;
-    position: relative;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: clip;
-}
-
-.hero-profession .profession-text {
-    display: inline-block;
-    vertical-align: middle;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.typing-cursor {
-    background-color: #ffe600;
-    display: inline-block;
-    width: 4px;
-    height: 1.1em;
-    vertical-align: middle;
-    animation: blink 0.7s infinite step-end;
-    margin-left: 2px;
-}
-
-@keyframes blink {
-    0% {
-        opacity: 1;
+    .hidden {
+        display: none !important;
     }
-    50% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 
-.hero-welcome {
-    color: #ccc;
-    font-size: 1.3rem;
-    margin-bottom: 0;
-}
-
-.hero-welcome .dot {
-    color: #ffe600;
-}
-
-.hero-image-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    padding-left: 20px;
-}
-
-.profile-photo-hero {
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 8px solid rgba(255, 230, 0, 0.4);
-    box-shadow: 0 0 100px rgba(255, 230, 0, 0.6), 0 0 40px rgba(255, 255, 255, 0.15),
-        inset 0 0 20px rgba(255, 255, 255, 0.1);
-    margin-bottom: 30px;
-    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, border-color 0.4s ease-in-out;
-}
-
-.profile-photo-hero:hover {
-    transform: scale(1.04);
-    border-color: rgba(255, 230, 0, 0.6);
-    box-shadow: 0 0 150px rgba(255, 230, 0, 0.8), 0 0 60px rgba(255, 255, 255, 0.25),
-        inset 0 0 30px rgba(255, 255, 255, 0.2);
-}
-
-#view-cv-btn {
-    padding: 15px 45px;
-    font-size: 1.3rem;
-    background-color: #ffe600;
-    color: #0d0d0d;
-    border: none;
-    border-radius: 35px;
-    cursor: pointer;
-    font-weight: 700;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    box-shadow: 0 5px 15px rgba(255, 230, 0, 0.3);
-}
-
-#view-cv-btn:hover {
-    background-color: #f0d800;
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(255, 230, 0, 0.6);
-}
-
-/* --- CV Content Wrapper --- */
-#cv-wrapper {
-    width: 100%;
-    max-width: 1000px;
-    padding: 0 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    height: 0;
-    overflow: hidden;
-    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, height 0.5s ease-in-out;
-}
-
-#cv-wrapper:not(.hidden) {
-    opacity: 1;
-    visibility: visible;
-    height: auto;
-    overflow: visible;
-}
-
-/* --- CV Top Banner --- */
-#cv-banner-top {
-    width: 100%;
-    background-color: #1a1a1a;
-    padding: 25px 30px;
-    border-radius: 0 0 15px 15px;
-    margin-top: 70px;
-    margin-bottom: 20px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    box-sizing: border-box;
-    justify-content: center;
-    text-align: center;
-}
-
-#cv-banner-top .profile-photo-small {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ffe600;
-    box-shadow: 0 0 15px rgba(255, 230, 0, 0.3);
-}
-
-#cv-banner-top .hero-name {
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: #e0e0e0;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* --- CV Navbar --- */
-.cv-navbar {
-    width: 100%;
-    background-color: #000000;
-    padding: 18px 20px;
-    margin-bottom: 40px;
-    border-radius: 0;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 15px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1001;
-    box-sizing: border-box;
-    transform: translateY(0);
-    transition: top 0.3s ease-in-out;
-}
-
-.cv-navbar a {
-    color: #bbb;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 10px 15px;
-    position: relative;
-    transition: color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-radius: 8px;
-}
-
-.cv-navbar a i {
-    font-size: 1.1rem;
-    color: #999;
-    transition: color 0.3s ease;
-}
-
-.cv-navbar a.active,
-.cv-navbar a:hover {
-    color: #1a1a1a;
-    background-color: #ffe600;
-    border-radius: 8px;
-}
-
-.cv-navbar a.active i,
-.cv-navbar a:hover i {
-    color: #1a1a1a;
-}
-
-/* --- Main Content Sections --- */
-.main-content {
-    width: 100%;
-    padding-top: 110px;
-    /* Điều chỉnh padding ngang để tạo khoảng trống 2 bên */
-    padding-left: 80px; /* Tăng khoảng cách cho desktop */
-    padding-right: 80px; /* Tăng khoảng cách cho desktop */
-    box-sizing: border-box; /* Đảm bảo padding không làm tăng tổng chiều rộng */
-}
-
-.section {
-    padding: 40px 30px;
-    background-color: #1a1a1a;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    margin-bottom: 40px;
-    box-sizing: border-box;
-    text-align: left;
-    opacity: 0; /* Bắt đầu với opacity 0 */
-    transform: translateY(50px); /* Bắt đầu hơi dịch xuống */
-    filter: blur(5px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out,
-        background-color 0.5s ease, box-shadow 0.5s ease;
-    position: relative; /* Quan trọng cho pseudo-elements */
-    overflow: hidden; /* Đảm bảo pseudo-elements không tràn ra ngoài border-radius */
-}
-
-.section.reveal {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-    background-color: #262626;
-    box-shadow: 0 5px 30px rgba(255, 230, 0, 0.2);
-}
-
-/* Icon trang trí ở hai bên */
-.section::before,
-.section::after {
-    content: ''; /* Để trống hoặc dùng mã unicode của icon */
-    font-family: "Font Awesome 5 Free"; /* Đảm bảo Font Awesome được load */
-    font-weight: 900; /* Cho solid icons */
-    position: absolute;
-    font-size: 150px; /* Kích thước lớn */
-    color: #ffe600; /* Màu vàng của bạn */
-    opacity: 0.05; /* Độ mờ rất thấp */
-    filter: blur(10px); /* Làm mờ nhẹ */
-    z-index: 0; /* Đảm bảo nằm dưới nội dung */
-    pointer-events: none; /* Không tương tác với chuột */
-    transition: opacity 0.8s ease, transform 0.8s ease; /* Transition khi reveal */
-}
-
-/* Icon bên trái */
-.section::before {
-    left: -30px; /* Đẩy ra ngoài một chút */
-    top: 50%;
-    transform: translateY(-50%) rotate(-15deg);
-    /* Tùy chỉnh icon cho từng section */
-    /* Ví dụ: content: "\f007"; for user icon */
-}
-
-/* Icon bên phải */
-.section::after {
-    right: -30px; /* Đẩy ra ngoài một chút */
-    top: 50%;
-    transform: translateY(-50%) rotate(15deg);
-    /* Tùy chỉnh icon cho từng section */
-    /* Ví dụ: content: "\f121"; for code icon */
-}
-
-/* Tùy chỉnh icon cho từng section cụ thể */
-#about::before { content: "\f007"; /* User icon */ }
-#about::after { content: "\f2b9"; /* Address book icon */ }
-
-#experience::before { content: "\f0b1"; /* Briefcase icon */ }
-#experience::after { content: "\f1ad"; /* Building icon */ }
-
-#projects::before { content: "\f0a3"; /* Folder icon */ }
-#projects::after { content: "\f1c9"; /* File code icon */ }
-
-#skills::before { content: "\f121"; /* Code icon */ }
-#skills::after { content: "\f085"; /* Cogs icon */ }
-
-#hobbies::before { content: "\f1e3"; /* Running icon */ }
-#hobbies::after { content: "\f004"; /* Heart icon */ }
-
-#contact::before { content: "\f0e0"; /* Envelope icon */ }
-#contact::after { content: "\f095"; /* Phone icon */ }
-
-
-.section h2 {
-    color: #e0e0e0;
-    transition: color 0.5s ease;
-}
-
-.section.reveal h2 {
-    color: #ffe600;
-}
-
-.section p,
-.section ul {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: #b0b0b0;
-    transition: color 0.5s ease;
-}
-
-.section.reveal p,
-.section.reveal ul {
-    color: #f0f0f0;
-}
-
-.section .section-image {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.5s ease;
-}
-
-.section.reveal .section-image {
-    box-shadow: 0 5px 25px rgba(255, 230, 0, 0.3);
-}
-
-.section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 25px;
-    position: relative;
-    padding-bottom: 10px;
-    text-align: center;
-}
-
-.section h2::after {
-    content: '';
-    position: absolute;
-    width: 75px;
-    height: 4px;
-    background-color: #ffe600;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 2px;
-}
-
-.section ul {
-    padding-left: 25px;
-}
-
-.section li {
-    margin-bottom: 12px;
-}
-
-/* --- About Section (Thông tin cá nhân) --- */
-.about-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 30px;
-}
-
-.about-left {
-    flex: 2;
-    min-width: 280px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Căn trái các phần tử con */
-    text-align: left; /* Căn trái text */
-}
-
-.info-box {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 10px;
-    font-weight: 400;
-    justify-content: flex-start; /* Căn trái nội dung */
-    width: 100%;
-}
-
-.info-box span {
-    font-size: 1.15rem;
-    color: #b0b0b0;
-    transition: color 0.5s ease;
-}
-
-.section.reveal .info-box span {
-    color: #f0f0f0;
-}
-
-.info-box span:first-child {
-    font-weight: 500;
-    width: auto; /* Để độ rộng tự động dựa trên nội dung */
-    text-align: left; /* Căn trái label */
-    margin-right: 15px;
-    color: #e0e0e0;
-    flex-shrink: 0;
-}
-
-.about-right.social-icons {
-    flex: 1;
-    min-width: 150px;
-    display: flex;
-    flex-direction: row; /* Đảm bảo các item nằm trên cùng một hàng */
-    justify-content: center; /* Căn giữa các icon theo chiều ngang */
-    align-items: center; /* Căn giữa các icon theo chiều dọc */
-    gap: 25px; /* Khoảng cách giữa các icon */
-    flex-wrap: nowrap; /* Ngăn không cho các icon xuống hàng nếu có đủ không gian */
-}
-
-.social-icons a {
-    color: #ffe600;
-    font-size: 48px; /* Kích thước icon đã tăng */
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.social-icons a:hover {
-    transform: scale(1.25);
-    color: #ccb300;
-}
-
-/* --- Section Images (Alternating Layout) --- */
-.section-content-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px 0;
-}
-
-.section-text-content {
-    flex: 2;
-    min-width: 300px;
-    text-align: left;
-}
-
-.section-image-wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 250px;
-    max-width: 350px;
-}
-
-.section-image {
-    max-width: 100%;
-    width: 320px;
-    height: auto;
-    border-radius: 10px;
-}
-
-.section-image:hover {
-    transform: scale(1.02);
-}
-
-.section-content-wrapper .image-right {
-    order: 2;
-}
-.section-content-wrapper .section-text-content {
-    order: 1;
-}
-
-.section-content-wrapper .image-left {
-    order: 1;
-}
-.section-content-wrapper .image-left + .section-text-content {
-    order: 2;
-}
-
-/* --- Experience Section --- */
-.section#experience ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.section#experience li {
-    background-color: #2a2a2a;
-    margin-bottom: 20px;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-    border-left: 6px solid #e6b800;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
-}
-
-.section.reveal .section#experience li {
-    background-color: #333333;
-    box-shadow: 0 8px 20px rgba(255, 230, 0, 0.2);
-    border-left-color: #ffe600;
-}
-
-.section#experience li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
-
-.section#experience li strong {
-    font-size: 1.25rem;
-    color: #b0b0b0;
-    display: block;
-    margin-bottom: 8px;
-    transition: color 0.5s ease;
-}
-
-.section.reveal .section#experience li strong {
-    color: #e0e0e0;
-}
-
-.section#experience li span {
-    font-size: 1.05rem;
-    color: #aaa;
-    display: block;
-    margin-top: 5px;
-}
-
-/* --- Projects Section --- */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 30px; /* Khoảng cách giữa các dự án */
-    padding-top: 20px;
-}
-
-.project-item {
-    background-color: #2a2a2a;
-    border-radius: 15px;
-    overflow: hidden; /* Đảm bảo ảnh bo tròn theo container */
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column; /* Sắp xếp ảnh trên, chi tiết dưới */
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-.section.reveal .project-item {
-    background-color: #333333;
-    box-shadow: 0 8px 25px rgba(255, 230, 0, 0.25);
-}
-
-.project-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.project-image-container {
-    width: 100%;
-    height: 200px; /* Chiều cao cố định cho ảnh */
-    overflow: hidden;
-}
-
-.project-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Đảm bảo ảnh được căn chỉnh và không bị méo */
-    transition: transform 0.5s ease;
-}
-
-.project-item:hover .project-image-container img {
-    transform: scale(1.1); /* Hiệu ứng zoom khi hover ảnh */
-}
-
-.project-details {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Cho phép details kéo giãn lấp đầy khoảng trống */
-}
-
-.project-details h3 {
-    font-size: 1.6rem;
-    color: #ffe600; /* Màu tiêu đề dự án */
-    margin-top: 0;
-    margin-bottom: 10px;
-    line-height: 1.3;
-}
-
-.project-details p {
-    font-size: 1rem;
-    color: #b0b0b0;
-    margin-bottom: 15px;
-    flex-grow: 1; /* Cho phép đoạn văn bản kéo giãn */
-}
-
-.tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: auto; /* Đẩy tech-stack xuống cuối details */
-    margin-bottom: 15px;
-}
-
-.tech-tag {
-    background-color: #1a1a1a;
-    color: #ffe600;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    border: 1px solid #444;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.project-item:hover .tech-tag {
-    background-color: #ffe600;
-    color: #0d0d0d;
-    border-color: #ffe600;
-}
-
-.project-links {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
-    flex-wrap: wrap;
-}
-
-.project-link-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background-color: #ffe600;
-    color: #1a1a1a;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(255, 230, 0, 0.2);
-}
-
-.project-link-btn i {
-    font-size: 1.1em;
-}
-
-.project-link-btn:hover {
-    background-color: #f0d800;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(255, 230, 0, 0.4);
-}
-
-/* --- Skills Section --- */
-.section#skills ul {
-    list-style: none;
-    padding-left: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 18px;
-}
-
-.section#skills li {
-    background-color: #1a1a1a;
-    color: #999;
-    padding: 12px 28px;
-    border-radius: 30px;
-    font-weight: 500;
-    font-size: 1.15rem;
-    border: 2px solid #555;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
-}
-
-.section.reveal .section#skills li {
-    background-color: #1a1a1a;
-    color: #ffe600;
-    border-color: #ffe600;
-}
-
-.section#skills li:hover {
-    background-color: #ffe600;
-    color: #0d0d0d;
-    transform: translateY(-3px);
-    border-color: #ffe600;
-}
-
-/* --- Hobbies Section (Sở thích) --- */
-.section#hobbies .hobby-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: 25px;
-    padding-top: 20px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-/* Ẩn thanh cuộn cho Chrome, Safari và Opera */
-.section#hobbies .hobby-grid::-webkit-scrollbar {
-    display: none;
-}
-
-.section#hobbies .hobby-item {
-    background-color: #2a2a2a;
-    padding: 15px 10px; /* Giảm padding để thu nhỏ ô */
-    border-radius: 15px;
-    text-align: center;
-    min-width: 120px; /* Giảm min-width để thu nhỏ ô */
-    flex-shrink: 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border: 2px solid #444;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.section.reveal .section#hobbies .hobby-item {
-    background-color: #333333;
-    border-color: #ffe600;
-    box-shadow: 0 8px 20px rgba(255, 230, 0, 0.2);
-}
-
-.section#hobbies .hobby-item:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-    background-color: #ffe600;
-    border-color: #ffe600;
-}
-
-.section#hobbies .hobby-item i {
-    font-size: 2.8rem; /* Giảm kích thước icon */
-    color: #ffe600;
-    margin-bottom: 8px; /* Giảm khoảng cách dưới icon */
-    transition: color 0.3s ease;
-}
-
-.section#hobbies .hobby-item:hover i {
-    color: #0d0d0d;
-}
-
-.section#hobbies .hobby-item p {
-    font-size: 0.95rem; /* Giảm kích thước chữ */
-    color: #f0f0f0;
-    margin: 0;
-    transition: color 0.3s ease;
-}
-
-/* --- Contact Section --- */
-.section#contact .section-text-content {
-    text-align: left;
-}
-
-.section#contact p {
-    justify-content: flex-start;
-    font-size: 1.15rem;
-    margin-bottom: 15px;
-    color: #b0b0b0;
-    transition: color 0.5s ease;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.section.reveal .section#contact p {
-    color: #f0f0f0;
-}
-
-.section#contact p i {
-    color: #ffe600;
-    font-size: 1.3rem;
-    flex-shrink: 0;
-    min-width: 25px;
-    text-align: center;
-}
-
-/* --- Footer --- */
-footer {
-    background-color: #000000;
-    color: #777;
-    text-align: center;
-    padding: 25px 20px;
-    width: 100%;
-    margin-top: 40px;
-    box-sizing: border-box;
-}
-
-/* --- Responsive Design --- */
-@media (max-width: 992px) {
+    /* --- HERO SECTION --- */
     .hero-section {
-        height: auto;
-        min-height: 100vh;
-        padding: 80px 20px;
-    }
-    .hero-content-wrapper {
-        flex-direction: column;
-        gap: 20px;
         width: 100%;
-        max-width: 100%;
-    }
-    .hero-text-inner {
-        text-align: center;
+        height: 100vh;
+        background-color: #0d0d0d;
+        display: flex;
         align-items: center;
-        padding-right: 0;
-    }
-    .hero-name {
-        font-size: 3.5rem;
-        white-space: normal;
-    }
-    .hero-profession {
-        font-size: 2rem;
-        white-space: normal;
-    }
-    .hero-image-wrapper {
-        padding-left: 0;
-    }
-    .profile-photo-hero {
-        width: 350px;
-        height: 350px;
-    }
-    #view-cv-btn {
-        margin-top: 20px;
+        justify-content: center;
+        padding: 0 50px;
+        box-sizing: border-box;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        position: relative;
+        opacity: 1;
+        transform: translateY(0);
     }
 
-    #cv-banner-top {
+    .hero-section.hidden {
+        opacity: 0;
+        transform: translateY(-100px);
+        pointer-events: none;
+        height: 0;
+        overflow: hidden;
+    }
+
+    .hero-content-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        width: 100%;
+        max-width: 1500px;
+        flex-wrap: wrap;
+    }
+
+    .hero-text-content {
+        flex: 1.5;
+        padding-right: 20px;
+        min-width: 300px;
+    }
+
+    .hero-greeting {
+        color: #bbb;
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .hero-text-inner {
+        text-align: left;
+        min-width: 300px;
+        display: flex;
         flex-direction: column;
+        align-items: flex-start;
+        flex-grow: 1;
+        padding-right: 20px;
+    }
+
+    .hero-name {
+        font-size: 4rem;
+        font-weight: 700px;
+        color: #e0e0e0;
+        margin-bottom: 10px;
+        line-height: 1.1;
+        white-space: nowrap;
+    }
+
+    .hero-profession {
+        font-size: 2.6rem;
+        color: #ffe600;
+        font-weight: 600;
+        margin-bottom: 30px;
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: clip;
+    }
+
+    .hero-profession .profession-text {
+        display: inline-block;
+        vertical-align: middle;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .typing-cursor {
+        background-color: #ffe600;
+        display: inline-block;
+        width: 4px;
+        height: 1.1em;
+        vertical-align: middle;
+        animation: blink 0.7s infinite step-end;
+        margin-left: 2px;
+    }
+
+    @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .hero-welcome {
+        color: #ccc;
+        font-size: 1.3rem;
+        margin-bottom: 0;
+    }
+
+    .hero-welcome .dot {
+        color: #ffe600;
+    }
+
+    .hero-image-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        padding-left: 20px;
+    }
+
+    .profile-photo-hero {
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 8px solid rgba(255, 230, 0, 0.4);
+        box-shadow: 0 0 100px rgba(255, 230, 0, 0.6), 0 0 40px rgba(255, 255, 255, 0.15),
+            inset 0 0 20px rgba(255, 255, 255, 0.1);
+        margin-bottom: 30px;
+        transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, border-color 0.4s ease-in-out;
+    }
+
+    .profile-photo-hero:hover {
+        transform: scale(1.04);
+        border-color: rgba(255, 230, 0, 0.6);
+        box-shadow: 0 0 150px rgba(255, 230, 0, 0.8), 0 0 60px rgba(255, 255, 255, 0.25),
+            inset 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+
+    #view-cv-btn {
+        padding: 15px 45px;
+        font-size: 1.3rem;
+        background-color: #ffe600;
+        color: #0d0d0d;
+        border: none;
+        border-radius: 35px;
+        cursor: pointer;
+        font-weight: 700;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        box-shadow: 0 5px 15px rgba(255, 230, 0, 0.3);
+    }
+
+    #view-cv-btn:hover {
+        background-color: #f0d800;
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(255, 230, 0, 0.6);
+    }
+
+    /* --- CV Content Wrapper --- */
+    #cv-wrapper {
+        width: 100%;
+        max-width: 1000px;
+        padding: 0 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, height 0.5s ease-in-out;
+    }
+
+    #cv-wrapper:not(.hidden) {
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        overflow: visible;
+    }
+
+    /* --- CV Top Banner --- */
+    #cv-banner-top {
+        width: 100%;
+        background-color: #1a1a1a;
+        padding: 25px 30px;
+        border-radius: 0 0 15px 15px;
+        margin-top: 70px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        box-sizing: border-box;
         justify-content: center;
         text-align: center;
     }
+
     #cv-banner-top .profile-photo-small {
         width: 80px;
         height: 80px;
-    }
-    #cv-banner-top .hero-name {
-        font-size: 1.8rem;
-    }
-    .cv-navbar {
-        flex-direction: row;
-        justify-content: center;
-        gap: 10px;
-        padding: 15px;
-        top: 0;
-    }
-    .cv-navbar a {
-        padding: 8px 12px;
-        font-size: 0.95rem;
-    }
-    .main-content {
-        padding-top: 130px;
-        padding-left: 50px; /* Điều chỉnh padding ngang cho tablet */
-        padding-right: 50px; /* Điều chỉnh padding ngang cho tablet */
-    }
-    .section {
-        padding: 30px 20px;
-    }
-    .section h2 {
-        font-size: 2.2rem;
-    }
-    .about-section {
-        flex-direction: column;
-        align-items: center; /* Vẫn giữ căn giữa tổng thể trên mobile */
-        text-align: center;
-    }
-    .about-left,
-    .about-right.social-icons {
-        width: 100%;
-        justify-content: center;
-    }
-    .info-box {
-        justify-content: center; /* Vẫn căn giữa từng dòng trên mobile để cân đối */
-    }
-    .info-box span:first-child {
-        text-align: right; /* Giữ căn phải cho label để thẳng hàng */
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ffe600;
+        box-shadow: 0 0 15px rgba(255, 230, 0, 0.3);
     }
 
-    .section-content-wrapper {
-        flex-direction: column;
-        gap: 20px;
+    #cv-banner-top .hero-name {
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: #e0e0e0;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
-    .section-content-wrapper .section-text-content,
-    .section-content-wrapper .section-image-wrapper {
-        order: unset;
-        min-width: unset;
+
+    /* --- CV Navbar --- */
+    .cv-navbar {
+        width: 100%;
+        background-color: #000000;
+        padding: 18px 20px;
+        margin-bottom: 40px;
+        border-radius: 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 15px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1001;
+        box-sizing: border-box;
+        transform: translateY(0);
+        transition: top 0.3s ease-in-out;
+    }
+
+    .cv-navbar a {
+        color: #bbb;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 10px 15px;
+        position: relative;
+        transition: color 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+    }
+
+    .cv-navbar a i {
+        font-size: 1.1rem;
+        color: #999;
+        transition: color 0.3s ease;
+    }
+
+    .cv-navbar a.active,
+    .cv-navbar a:hover {
+        color: #1a1a1a;
+        background-color: #ffe600;
+        border-radius: 8px;
+    }
+
+    .cv-navbar a.active i,
+    .cv-navbar a:hover i {
+        color: #1a1a1a;
+    }
+
+    /* --- Main Content Sections --- */
+    .main-content {
+        width: 100%;
+        padding-top: 110px;
+        padding-left: 80px; 
+        padding-right: 80px; 
+        box-sizing: border-box; 
+    }
+
+    .section {
+        padding: 40px 30px;
+        background-color: #1a1a1a;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        margin-bottom: 40px;
+        box-sizing: border-box;
+        text-align: left;
+        opacity: 0; /* Bắt đầu với opacity 0 */
+        transform: translateY(50px); 
+        filter: blur(5px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out,
+            background-color 0.5s ease, box-shadow 0.5s ease;
+        position: relative;
+        overflow: hidden; 
+    }
+
+    .section.reveal {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+        background-color: #262626;
+        box-shadow: 0 5px 30px rgba(255, 230, 0, 0.2);
+    }
+
+
+    .section h2 {
+        color: #e0e0e0;
+        transition: color 0.5s ease;
+    }
+
+    .section.reveal h2 {
+        color: #ffe600;
+    }
+
+    .section p,
+    .section ul {
+        font-size: 1.15rem;
+        line-height: 1.8;
+        color: #b0b0b0;
+        transition: color 0.5s ease;
+    }
+
+    .section.reveal p,
+    .section.reveal ul {
+        color: #f0f0f0;
+    }
+
+    .section .section-image {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.5s ease;
+    }
+
+    .section.reveal .section-image {
+        box-shadow: 0 5px 25px rgba(255, 230, 0, 0.3);
+    }
+
+    .section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 10px;
         text-align: center;
     }
-    .section-image {
-        max-width: 80%;
-        width: 280px;
+
+    .section h2::after {
+        content: '';
+        position: absolute;
+        width: 75px;
+        height: 4px;
+        background-color: #ffe600;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
     }
+
+    .section ul {
+        padding-left: 25px;
+    }
+
+    .section li {
+        margin-bottom: 12px;
+    }
+
+    /* --- About Section (Thông tin cá nhân) --- */
+    .about-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .about-left {
+        flex: 2;
+        min-width: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Căn trái các phần tử con */
+        text-align: left; /* Căn trái text */
+    }
+
+    .info-box {
+        display: flex;
+        align-items: baseline;
+        margin-bottom: 10px;
+        font-weight: 400;
+        justify-content: flex-start; /* Căn trái nội dung */
+        width: 100%;
+    }
+
+    .info-box span {
+        font-size: 1.15rem;
+        color: #b0b0b0;
+        transition: color 0.5s ease;
+    }
+
+    .section.reveal .info-box span {
+        color: #f0f0f0;
+    }
+
+    .info-box span:first-child {
+        font-weight: 500;
+        width: auto; /* Để độ rộng tự động dựa trên nội dung */
+        text-align: left; /* Căn trái label */
+        margin-right: 15px;
+        color: #e0e0e0;
+        flex-shrink: 0;
+    }
+
+    .about-right.social-icons {
+        flex: 1;
+        min-width: 150px;
+        display: flex;
+        flex-direction: row; /* Đảm bảo các item nằm trên cùng một hàng */
+        justify-content: center; /* Căn giữa các icon theo chiều ngang */
+        align-items: center; /* Căn giữa các icon theo chiều dọc */
+        gap: 25px; /* Khoảng cách giữa các icon */
+        flex-wrap: nowrap; /* Ngăn không cho các icon xuống hàng nếu có đủ không gian */
+    }
+
     .social-icons a {
-        font-size: 40px; /* Điều chỉnh kích thước icon trên tablet */
+        color: #ffe600;
+        font-size: 48px; /* Kích thước icon đã tăng */
+        transition: transform 0.3s ease, color 0.3s ease;
     }
-    .section#contact p {
-        flex-direction: row;
-        justify-content: flex-start;
+
+    .social-icons a:hover {
+        transform: scale(1.25);
+        color: #ccb300;
+    }
+
+    /* --- Section Images (Alternating Layout) --- */
+    .section-content-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px 0;
+    }
+
+    .section-text-content {
+        flex: 2;
+        min-width: 300px;
         text-align: left;
     }
-    .section#contact p i {
-        min-width: 25px;
-    }
-    .section#hobbies .hobby-grid {
-        justify-content: flex-start;
-        padding: 20px 10px;
-    }
-    .section#hobbies .hobby-item {
-        width: 110px; /* Nhỏ hơn trên tablet */
-        padding: 12px 8px; /* Giảm padding */
-    }
-    .section#hobbies .hobby-item i {
-        font-size: 2.5rem; /* Nhỏ hơn icon */
-        margin-bottom: 8px;
-    }
-    .section#hobbies .hobby-item p {
-        font-size: 0.9rem; /* Nhỏ hơn text */
+
+    .section-image-wrapper {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 250px;
+        max-width: 350px;
     }
 
-    /* Projects Section adjustments for Tablet */
+    .section-image {
+        max-width: 100%;
+        width: 320px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .section-image:hover {
+        transform: scale(1.02);
+    }
+
+    .section-content-wrapper .image-right {
+        order: 2;
+    }
+    .section-content-wrapper .section-text-content {
+        order: 1;
+    }
+
+    .section-content-wrapper .image-left {
+        order: 1;
+    }
+    .section-content-wrapper .image-left + .section-text-content {
+        order: 2;
+    }
+
+    /* --- Experience Section --- */
+    .section#experience ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .section#experience li {
+        background-color: #2a2a2a;
+        margin-bottom: 20px;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        border-left: 6px solid #e6b800;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .section.reveal .section#experience li {
+        background-color: #333333;
+        box-shadow: 0 8px 20px rgba(255, 230, 0, 0.2);
+        border-left-color: #ffe600;
+    }
+
+    .section#experience li:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .section#experience li strong {
+        font-size: 1.25rem;
+        color: #b0b0b0;
+        display: block;
+        margin-bottom: 8px;
+        transition: color 0.5s ease;
+    }
+
+    .section.reveal .section#experience li strong {
+        color: #e0e0e0;
+    }
+
+    .section#experience li span {
+        font-size: 1.05rem;
+        color: #aaa;
+        display: block;
+        margin-top: 5px;
+    }
+
+    /* --- Projects Section --- */
     .project-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+        gap: 30px; /* Khoảng cách giữa các dự án */
+        padding-top: 20px;
+    }
+
+    .project-item {
+        background-color: #2a2a2a;
+        border-radius: 15px;
+        overflow: hidden; /* Đảm bảo ảnh bo tròn theo container */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column; /* Sắp xếp ảnh trên, chi tiết dưới */
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .section.reveal .project-item {
+        background-color: #333333;
+        box-shadow: 0 8px 25px rgba(255, 230, 0, 0.25);
+    }
+
+    .project-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-image-container {
+        width: 100%;
+        height: 200px; /* Chiều cao cố định cho ảnh */
+        overflow: hidden;
+    }
+
+    .project-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Đảm bảo ảnh được căn chỉnh và không bị méo */
+        transition: transform 0.5s ease;
+    }
+
+    .project-item:hover .project-image-container img {
+        transform: scale(1.1); /* Hiệu ứng zoom khi hover ảnh */
+    }
+
+    .project-details {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1; /* Cho phép details kéo giãn lấp đầy khoảng trống */
+    }
+
+    .project-details h3 {
+        font-size: 1.6rem;
+        color: #ffe600; /* Màu tiêu đề dự án */
+        margin-top: 0;
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+
+    .project-details p {
+        font-size: 1rem;
+        color: #b0b0b0;
+        margin-bottom: 15px;
+        flex-grow: 1; /* Cho phép đoạn văn bản kéo giãn */
+    }
+
+    .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: auto; /* Đẩy tech-stack xuống cuối details */
+        margin-bottom: 15px;
+    }
+
+    .tech-tag {
+        background-color: #1a1a1a;
+        color: #ffe600;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        border: 1px solid #444;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .project-item:hover .tech-tag {
+        background-color: #ffe600;
+        color: #0d0d0d;
+        border-color: #ffe600;
+    }
+
+    .project-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+
+    .project-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background-color: #ffe600;
+        color: #1a1a1a;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 10px rgba(255, 230, 0, 0.2);
+    }
+
+    .project-link-btn i {
+        font-size: 1.1em;
+    }
+
+    .project-link-btn:hover {
+        background-color: #f0d800;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(255, 230, 0, 0.4);
+    }
+
+    .section#skills ul {
+        list-style: none;
+        padding-left: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .section#skills li {
+        background-color: #1a1a1a;
+        color: #999;
+        padding: 12px 28px;
+        border-radius: 30px;
+        font-weight: 500;
+        font-size: 1.15rem;
+        border: 2px solid #555;
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+    }
+
+    .section.reveal .section#skills li {
+        background-color: #1a1a1a;
+        color: #ffe600;
+        border-color: #ffe600;
+    }
+
+    .section#skills li:hover {
+        background-color: #ffe600;
+        color: #0d0d0d;
+        transform: translateY(-3px);
+        border-color: #ffe600;
+    }
+    */
+
+    /* --- Circular Skill Styles --- */
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust minmax for circle size */
+        gap: 30px;
+        justify-items: center; /* Center circles in their grid cells */
+        padding-top: 20px;
+    }
+
+    .skill-circle-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .skill-circle {
+        position: relative;
+        width: 120px; /* Size of the circle */
+        height: 120px;
+        border-radius: 50%;
+        background: #2a2a2a; /* Background of the circle */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        overflow: hidden; /* Important for clipping the pseudo-elements */
+        border: 3px solid #444; /* Outline of the circle */
+        transition: all 0.3s ease;
+    }
+
+    .section.reveal .skill-circle {
+        background-color: #333333;
+        border-color: #ffe600;
+        box-shadow: 0 8px 25px rgba(255, 230, 0, 0.25);
+    }
+
+    .skill-circle:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        background-color: #ffe600; /* Change background on hover */
+        border-color: #ffe600;
+    }
+
+
+    /* Inner text for skill percentage/label */
+    .skill-circle-text {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #ffe600; /* Color of the text */
+        z-index: 1; /* Ensure text is above pseudo-elements */
+        transition: color 0.3s ease;
+    }
+
+    .skill-circle:hover .skill-circle-text {
+        color: #0d0d0d; /* Text color on hover */
+    }
+
+
+    /* Pseudo-elements for the "fill" effect - adjust for visual percentage */
+    /* These simulate the fill. For actual percentage, JS/SVG is better. */
+
+    .skill-circle::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 230, 0, 0.2); /* A light fill */
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0); /* Start hidden */
+        transition: transform 0.8s ease-out; /* Animate scaling */
+        opacity: 0;
+    }
+
+    .section.reveal .skill-circle::before {
+        opacity: 1;
+        /* Adjust scale for perceived "percentage" */
+        /* Example: scale(0.9) for 90%, scale(0.7) for 70% etc. */
+        /* You'll apply specific classes to each skill for different fills */
+    }
+
+    /* Specific fill levels (you'd apply these classes to .skill-circle) */
+    .skill-circle.level-95::before { transform: translate(-50%, -50%) scale(0.95); background-color: rgba(255, 230, 0, 0.7); }
+    .skill-circle.level-90::before { transform: translate(-50%, -50%) scale(0.9); background-color: rgba(255, 230, 0, 0.6); }
+    .skill-circle.level-85::before { transform: translate(-50%, -50%) scale(0.85); background-color: rgba(255, 230, 0, 0.55); }
+    .skill-circle.level-80::before { transform: translate(-50%, -50%) scale(0.8); background-color: rgba(255, 230, 0, 0.5); }
+    .skill-circle.level-75::before { transform: translate(-50%, -50%) scale(0.75); background-color: rgba(255, 230, 0, 0.45); }
+    .skill-circle.level-70::before { transform: translate(-50%, -50%) scale(0.7); background-color: rgba(255, 230, 0, 0.4); }
+    .skill-circle.level-60::before { transform: translate(-50%, -50%) scale(0.6); background-color: rgba(255, 230, 0, 0.3); }
+    .skill-circle.level-50::before { transform: translate(-50%, -50%) scale(0.5); background-color: rgba(255, 230, 0, 0.2); }
+
+
+    /* Skill name below the circle */
+    .skill-name {
+        font-size: 1.1rem;
+        color: #f0f0f0;
+        margin-top: 5px;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .skill-circle-item:hover .skill-name {
+        color: #ffe600; /* Skill name color on hover */
+    }
+
+
+    /* --- Hobbies Section (Sở thích) --- */
+    .section#hobbies .hobby-grid {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 25px;
+        padding-top: 20px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    /* Ẩn thanh cuộn cho Chrome, Safari và Opera */
+    .section#hobbies .hobby-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .section#hobbies .hobby-item {
+        background-color: #2a2a2a;
+        padding: 15px 10px; /* Giảm padding để thu nhỏ ô */
+        border-radius: 15px;
+        text-align: center;
+        min-width: 120px; /* Giảm min-width để thu nhỏ ô */
+        flex-shrink: 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        border: 2px solid #444;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .section.reveal .section#hobbies .hobby-item {
+        background-color: #333333;
+        border-color: #ffe600;
+        box-shadow: 0 8px 20px rgba(255, 230, 0, 0.2);
+    }
+
+    .section#hobbies .hobby-item:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        background-color: #ffe600;
+        border-color: #ffe600;
+    }
+
+    .section#hobbies .hobby-item i {
+        font-size: 2.8rem; /* Giảm kích thước icon */
+        color: #ffe600;
+        margin-bottom: 8px; /* Giảm khoảng cách dưới icon */
+        transition: color 0.3s ease;
+    }
+
+    .section#hobbies .hobby-item:hover i {
+        color: #0d0d0d;
+    }
+
+    .section#hobbies .hobby-item p {
+        font-size: 0.95rem; /* Giảm kích thước chữ */
+        color: #f0f0f0;
+        margin: 0;
+        transition: color 0.3s ease;
+    }
+
+    /* --- Contact Section --- */
+    .section#contact .section-text-content {
+        text-align: left;
+    }
+
+    .section#contact p {
+        justify-content: flex-start;
+        font-size: 1.15rem;
+        margin-bottom: 15px;
+        color: #b0b0b0;
+        transition: color 0.5s ease;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .section.reveal .section#contact p {
+        color: #f0f0f0;
+    }
+
+    .section#contact p i {
+        color: #ffe600;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+        min-width: 25px;
+        text-align: center;
+    }
+
+    /* --- Footer --- */
+    footer {
+        background-color: #000000;
+        color: #777;
+        text-align: center;
+        padding: 25px 20px;
+        width: 100%;
+        margin-top: 40px;
+        box-sizing: border-box;
+    }
+
+    /* --- Responsive Design --- */
+    @media (max-width: 992px) {
+        .hero-section {
+            height: auto;
+            min-height: 100vh;
+            padding: 80px 20px;
+        }
+        .hero-content-wrapper {
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 100%;
+        }
+        .hero-text-inner {
+            text-align: center;
+            align-items: center;
+            padding-right: 0;
+        }
+        .hero-name {
+            font-size: 3.5rem;
+            white-space: normal;
+        }
+        .hero-profession {
+            font-size: 2rem;
+            white-space: normal;
+        }
+        .hero-image-wrapper {
+            padding-left: 0;
+        }
+        .profile-photo-hero {
+            width: 350px;
+            height: 350px;
+        }
+        #view-cv-btn {
+            margin-top: 20px;
+        }
+
+        #cv-banner-top {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        #cv-banner-top .profile-photo-small {
+            width: 80px;
+            height: 80px;
+        }
+        #cv-banner-top .hero-name {
+            font-size: 1.8rem;
+        }
+        .cv-navbar {
+            flex-direction: row;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            top: 0;
+        }
+        .cv-navbar a {
+            padding: 8px 12px;
+            font-size: 0.95rem;
+        }
+        .main-content {
+            padding-top: 130px;
+            padding-left: 50px; /* Điều chỉnh padding ngang cho tablet */
+            padding-right: 50px; /* Điều chỉnh padding ngang cho tablet */
+        }
+        .section {
+            padding: 30px 20px;
+        }
+        .section h2 {
+            font-size: 2.2rem;
+        }
+        .about-section {
+            flex-direction: column;
+            align-items: center; /* Vẫn giữ căn giữa tổng thể trên mobile */
+            text-align: center;
+        }
+        .about-left,
+        .about-right.social-icons {
+            width: 100%;
+            justify-content: center;
+        }
+        .info-box {
+            justify-content: center; /* Vẫn căn giữa từng dòng trên mobile để cân đối */
+        }
+        .info-box span:first-child {
+            text-align: right; /* Giữ căn phải cho label để thẳng hàng */
+        }
+
+        .section-content-wrapper {
+            flex-direction: column;
+            gap: 20px;
+        }
+        .section-content-wrapper .section-text-content,
+        .section-content-wrapper .section-image-wrapper {
+            order: unset;
+            min-width: unset;
+            text-align: center;
+        }
+        .section-image {
+            max-width: 80%;
+            width: 280px;
+        }
+        .social-icons a {
+            font-size: 40px; /* Điều chỉnh kích thước icon trên tablet */
+        }
+        .section#contact p {
+            flex-direction: row;
+            justify-content: flex-start;
+            text-align: left;
+        }
+        .section#contact p i {
+            min-width: 25px;
+        }
+        .section#hobbies .hobby-grid {
+            justify-content: flex-start;
+            padding: 20px 10px;
+        }
+        .section#hobbies .hobby-item {
+            width: 110px; /* Nhỏ hơn trên tablet */
+            padding: 12px 8px; /* Giảm padding */
+        }
+        .section#hobbies .hobby-item i {
+            font-size: 2.5rem; /* Nhỏ hơn icon */
+            margin-bottom: 8px;
+        }
+        .section#hobbies .hobby-item p {
+            font-size: 0.9rem; /* Nhỏ hơn text */
+        }
+
+        /* Projects Section adjustments for Tablet */
+        .project-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+    /* Skills Section adjustments for Tablet */
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 25px;
+    }
+    .skill-circle {
+        width: 100px;
+        height: 100px;
+    }
+    .skill-circle-text {
+        font-size: 1.1rem;
+    }
+    .skill-name {
+        font-size: 1rem;
     }
 
     /* Ẩn các icon trang trí bên cạnh trên màn hình nhỏ hơn */
@@ -1055,7 +1166,7 @@ footer {
     .info-box span,
     .section#experience li strong,
     .section#experience li span,
-    .section#skills li,
+    /* .section#skills li,  -- Removed as skills are now circular */
     .section#contact p {
         font-size: 1.05rem;
     }
@@ -1112,6 +1223,22 @@ footer {
         font-size: 0.85rem;
         padding: 8px 15px;
     }
+
+    /* Skills Section adjustments for Mobile Large */
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 20px;
+    }
+    .skill-circle {
+        width: 80px;
+        height: 80px;
+    }
+    .skill-circle-text {
+        font-size: 1rem;
+    }
+    .skill-name {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1161,7 +1288,7 @@ footer {
     .info-box span,
     .section#experience li strong,
     .section#experience li span,
-    .section#skills li,
+    /* .section#skills li,  -- Removed as skills are now circular */
     .section#contact p {
         font-size: 0.95rem;
     }
@@ -1213,5 +1340,21 @@ footer {
     .project-link-btn {
         width: 100%; /* Make buttons full width */
         justify-content: center; /* Center text in button */
+    }
+
+    /* Skills Section adjustments for Mobile Small */
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 15px;
+    }
+    .skill-circle {
+        width: 70px;
+        height: 70px;
+    }
+    .skill-circle-text {
+        font-size: 0.9rem;
+    }
+    .skill-name {
+        font-size: 0.8rem;
     }
 }

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>HUYNH VO HUYEN TRAN - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style_cv_HuyenTran.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section" id="home">
+        <div class="hero-content-wrapper">
+            <div class="hero-text-content">
+                <div class="hero-text-inner">
+                    <h1 class="hero-name">HUYNH VO HUYEN TRAN</h1>
+                    <p class="hero-profession"><span class="profession-text"></span><span class="typing-cursor">|</span></p>
+                    <p class="hero-welcome">Welcome to my CV <span class="dot">✌🏻</span></p>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="avt.jpg" alt="Ảnh đại diện" class="profile-photo-hero">
+                <button id="view-cv-btn">XEM CV</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cv-wrapper" class="hidden">
+        <div id="cv-banner-top">
+            <img src="avt.jpg" alt="Ảnh đại diện nhỏ" class="profile-photo-small">
+            <h1 class="hero-name">HUYNH VO HUYEN TRAN</h1>
+        </div>
+
+        <div class="cv-navbar">
+            <a href="#info"><i class="fas fa-user"></i> Thông tin</a>
+            <a href="#summary"><i class="fas fa-align-left"></i> Tóm tắt</a>
+            <a href="#skills"><i class="fas fa-code"></i> Kỹ năng</a>
+            <a href="#language"><i class="fas fa-language"></i> Ngôn ngữ</a>
+            <a href="#education"><i class="fas fa-graduation-cap"></i> Học vấn</a>
+            <a href="#objective"><i class="fas fa-bullseye"></i> Dự định</a>
+            <a href="#experience"><i class="fas fa-briefcase"></i> Kinh nghiệm</a>
+            <a href="#projects"><i class="fas fa-project-diagram"></i> Dự án</a>
+            <a href="#hobbies"><i class="fas fa-heart"></i> Sở thích</a> <a href="#contact"><i class="fas fa-envelope"></i> Liên hệ</a>
+        </div>
+
+        <div class="main-content">
+            <section class="section" id="info">
+                <h2>Thông tin cá nhân</h2>
+                <div class="section-content-wrapper">
+                    <div class="section-text-content">
+                        <div class="about-section">
+                            <div class="about-left">
+                                <div class="info-box"><span>Họ tên:</span> <span>Huỳnh Võ Huyền Trân</span></div>
+                                <div class="info-box"><span>Ngày sinh:</span> <span>23/04/2005</span></div>
+                            </div>
+                            <div class="about-right social-icons">
+                                <a href="https://www.instagram.com/urs_alb.04" target="_blank" class="icon-box"><i class="fab fa-instagram"></i></a>
+                                <a href="http://www.facebook.com/channe504" target="_blank" class="icon-box"><i class="fab fa-facebook"></i></a>
+                                <a href="https://github.com/Tranhuynh234" target="_blank" class="icon-box"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-image-wrapper image-right">
+                        <img src="info.png" alt="Thông tin cá nhân" class="section-image">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="summary">
+                <h2>Tóm tắt bản thân</h2>
+                <div class="section-content-wrapper">
+                    <div class="section-image-wrapper image-left">
+                        <img src="info2.png" alt="Tóm tắt bản thân" class="section-image">
+                    </div>
+                    <div class="section-text-content">
+                        <p>Là sinh viên năm hai ngành Công nghệ Thông tin, tôi luôn nỗ lực trau dồi kiến thức và kỹ năng thông qua việc học tập và thực hành trong lĩnh vực phát triển phần mềm.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="skills">
+                <h2>Kỹ năng</h2>
+                <div class="section-content-wrapper">
+                    <div class="section-text-content">
+                        <ul>
+                            <li>Ngôn ngữ: C/C++, Java, JavaScript, Python</li>
+                            <li>Front-end: HTML, CSS, ReactJS</li>
+                            <li>Back-end: Java Spring Boot, MySQL</li>
+                            <li>Sử dụng Git, Github để quản lý mã nguồn</li>
+                            <li>Kỹ năng làm việc nhóm</li>
+                        </ul>
+                    </div>
+                    <div class="section-image-wrapper image-right">
+                        <img src="skill.png" alt="Kỹ năng" class="section-image">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="language">
+                <h2>Ngôn ngữ</h2>
+                <div class="section-content-wrapper">
+                    <div class="section-image-wrapper image-left">
+                        <img src="lang.png" alt="Ngôn ngữ" class="section-image">
+                    </div>
+                    <div class="section-text-content">
+                        <ul><li>Tiếng Anh (Giao tiếp cơ bản)</li></ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="education">
+                <h2>Học vấn</h2>
+                <div class="section-content-wrapper">
+                    <div class="section-text-content">
+                        <p>Đại học Giao Thông Vận Tải TP HCM</p>
+                        <p>Chuyên ngành: Mạng máy tính và truyền thông dữ liệu</p>
+                        <p>Thời gian: 2023 - Nay</p>
+                    </div>
+                    <div class="section-image-wrapper image-right">
+                        <img src="edu.png" alt="Học vấn" class="section-image">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="objective">
+                <h2>Dự định</h2>
+                <div class="section-content-wrapper">
+                    <div class="section-image-wrapper image-left">
+                        <img src="obj.png" alt="Dự định" class="section-image">
+                    </div>
+                    <div class="section-text-content">
+                        <p>Sau khi tốt nghiệp, tôi muốn trở thành một lập trình viên Fullstack có thể đóng góp vào các dự án phần mềm chất lượng cao.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="experience">
+                <h2>Kinh nghiệm làm việc</h2>
+                <div class="section-content-wrapper">
+                    <div class="section-text-content">
+                        <ul>
+                            <li>
+                                <strong>CÔNG TY CÔNG NGHỆ FSI</strong> (07/2024 - 12/2024)<br>
+                                - Nhân viên số hóa thông tin<br>
+                                - Nhân viên nhập liệu kỹ thuật số
+                            </li>
+                            <li>
+                                <strong>CÔNG TY J&T</strong> (12/2024 - 06/2025)<br>
+                                - Nhân viên xử lý đơn hàng<br>
+                                - Nhân viên phân loại hàng hóa
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="section-image-wrapper image-right">
+                        <img src="exp.png" alt="Kinh nghiệm" class="section-image">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="projects">
+                <h2>Dự án</h2>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <div class="project-image-container">
+                            <img src="make.png" alt="Ứng dụng Quản lý lịch làm việc"> </div>
+                        <div class="project-details">
+                            <h3>ỨNG DỤNG ĐẶT LỊCH MAKEUP</h3>
+                            <p>Ứng dụng web quản lý lịch cho makeup artist, giúp tối ưu hóa việc sắp xếp cuộc hẹn và theo dõi khách hàng.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">ReactJS</span>
+                                <span class="tech-tag">Java Spring Boot</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/TranKimDuyen321123/MAKEUP_BOOKING_APP" target="_blank" class="project-link-btn">Xem chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-image-container">
+                            <img src="maket.png" alt="Website bán hàng online"> </div>
+                        <div class="project-details">
+                            <h3>WEBSITE BÁN HÀNG ONLINE</h3>
+                            <p>Thiết kế website thương mại điện tử đơn giản với các tính năng cơ bản như xem sản phẩm, thêm vào giỏ hàng và thanh toán.</p>
+                            <div class="tech-stack">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank" class="project-link-btn">Xem chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </section>
+
+            <section class="section" id="hobbies">
+                <h2>Sở thích</h2>
+                <div class="hobby-grid">
+                    <div class="hobby-item">
+                        <i class="fas fa-music"></i>
+                        <p>Nghe nhạc</p>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="fas fa-gamepad"></i>
+                        <p>Chơi game</p>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="fas fa-book"></i>
+                        <p>Đọc sách</p>
+                    </div>
+                    <div class="hobby-item">
+                        <i class="fas fa-camera"></i>
+                        <p>Chụp ảnh</p>
+                    </div>
+                </div>
+            </section>
+            <section class="section" id="contact">
+                <h2>Liên hệ</h2>
+                <div class="section-content-wrapper">
+                    <div class="section-text-content">
+                        <p><i class="fas fa-envelope"></i> tranhuynh23042005@gmail.com</p>
+                        <p><i class="fas fa-phone-alt"></i> 0944 511 214</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Hóc Môn, Tp Hồ Chí Minh</p>
+                    </div>
+                    <div class="section-image-wrapper image-right">
+                        <img src="contact.png" alt="Liên hệ" class="section-image">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; DESIGNED BY HUYNH TRAN </p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const viewCvBtn = document.getElementById("view-cv-btn");
+            const cvWrapper = document.getElementById("cv-wrapper");
+            const heroSection = document.querySelector(".hero-section");
+
+          
+            const professionTextElement = document.querySelector(".profession-text");
+            const typingCursor = document.querySelector(".typing-cursor");
+            const professionText = "Tester/QA";
+            let charIndex = 0;
+
+            function typeWriter() {
+                if (charIndex < professionText.length) {
+                    professionTextElement.textContent += professionText.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 100); 
+                } else {
+                    
+                    if (typingCursor) typingCursor.style.animationPlayState = 'running';
+                }
+            }
+
+            // Start typing effect when the page loads
+            if (professionTextElement) {
+                professionTextElement.textContent = ""; // Clear content to start typing
+                typeWriter();
+            }
+
+            viewCvBtn.addEventListener("click", function () {
+                heroSection.classList.add("hidden");
+                cvWrapper.classList.remove("hidden");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Kích hoạt reveal cho các section đang trong view ngay lập tức khi CV hiện ra
+                sections.forEach(section => {
+                    if (isElementInViewport(section)) {
+                        section.classList.add('reveal');
+                    } else {
+                        // Đảm bảo các section không trong view bị làm mờ ban đầu
+                        section.classList.remove('reveal');
+                    }
+                });
+            });
+
+            const cvNavLinks = document.querySelectorAll(".cv-navbar a");
+            const sections = document.querySelectorAll(".main-content .section");
+
+            cvNavLinks.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+
+                    if (targetElement) {
+                        const cvNavbar = document.querySelector(".cv-navbar");
+                        let offset = 0;
+                        if (cvNavbar) {
+                            offset += cvNavbar.offsetHeight;
+                        }
+                        // Add some extra padding to prevent content from being directly under fixed navbar
+                        offset += 20;
+
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // =========================================================
+            // SCRIPT CHÍNH CHO HIỆU ỨNG SCROLL REVEAL CÁC SECTION
+            // =========================================================
+            const sectionRevealObserverOptions = {
+                root: null, // viewport as the root
+                rootMargin: '0px',
+                threshold: 0.3 // Trigger when 30% of the element is visible
+            };
+
+            const sectionRevealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal'); // Thêm class 'reveal' khi section đi vào tầm nhìn
+                    } else {
+                        // KHI SECTION RỜI KHỎI TẦM NHÌN, BỎ CLASS 'REVEAL' ĐỂ LÀM MỜ LẠI
+                        entry.target.classList.remove('reveal');
+                    }
+                });
+            }, sectionRevealObserverOptions);
+
+            sections.forEach(section => {
+                sectionRevealObserver.observe(section); // Bắt đầu quan sát từng section
+                // Ngay lập tức áp dụng trạng thái ban đầu (kém nổi bật) cho tất cả các section khi DOM loaded
+                // Trừ khi nó đã ở trong viewport (được xử lý ở phần "view-cv-btn" click)
+                if (!isElementInViewport(section)) {
+                    section.classList.remove('reveal'); // Đảm bảo không có reveal ban đầu
+                }
+            });
+
+            // Hàm kiểm tra một phần tử có trong viewport hay không (hữu ích khi tải trang/click button)
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                // Điều chỉnh một chút để khớp với logic threshold của observer nếu cần
+                // Ở đây, tôi giữ nguyên cho sự đơn giản.
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth) &&
+                    rect.right >= 0 // Thêm điều kiện này để tránh các phần tử nằm ngoài màn hình bên phải
+                );
+            }
+
+            // =========================================================
+            // SCRIPT HIỆN TẠI ĐỂ ACTIVE NAVBAR LINK (GIỮ NGUYÊN)
+            // =========================================================
+            const navbarActiveObserverOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.6
+            };
+
+            const navbarActiveObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        cvNavLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, navbarActiveObserverOptions);
+
+            sections.forEach(section => {
+                navbarActiveObserver.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -242,151 +242,268 @@
         <p>&copy; DESIGNED BY HUYNH TRAN </p>
     </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const viewCvBtn = document.getElementById("view-cv-btn");
-            const cvWrapper = document.getElementById("cv-wrapper");
-            const heroSection = document.querySelector(".hero-section");
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const viewCvBtn = document.getElementById("view-cv-btn");
+        const cvWrapper = document.getElementById("cv-wrapper");
+        const heroSection = document.querySelector(".hero-section");
+        const body = document.body;
 
-          
-            const professionTextElement = document.querySelector(".profession-text");
-            const typingCursor = document.querySelector(".typing-cursor");
-            const professionText = "Tester/QA";
-            let charIndex = 0;
+        // Kích hoạt hiệu ứng reveal cho body ngay khi trang tải
+        body.classList.add('reveal');
 
-            function typeWriter() {
-                if (charIndex < professionText.length) {
-                    professionTextElement.textContent += professionText.charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeWriter, 100); 
-                } else {
-                    
-                    if (typingCursor) typingCursor.style.animationPlayState = 'running';
-                }
+        // Typing effect for profession
+        const professionTextElement = document.querySelector(".profession-text");
+        const typingCursor = document.querySelector(".typing-cursor");
+        const professionText = "Tester/QA";
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < professionText.length) {
+                professionTextElement.textContent += professionText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            } else {
+                if (typingCursor) typingCursor.style.animationPlayState = 'running';
             }
+        }
 
-            // Start typing effect when the page loads
-            if (professionTextElement) {
-                professionTextElement.textContent = ""; // Clear content to start typing
-                typeWriter();
-            }
+        // Start typing effect when the page loads
+        if (professionTextElement) {
+            professionTextElement.textContent = ""; // Clear content to start typing
+            typeWriter();
+        }
 
+        // Handle "View CV" button click
+        if (viewCvBtn && heroSection && cvWrapper && body) {
             viewCvBtn.addEventListener("click", function () {
-                heroSection.classList.add("hidden");
-                cvWrapper.classList.remove("hidden");
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                heroSection.classList.add("hidden"); // Ẩn hero section
+                
+                setTimeout(() => {
+                    cvWrapper.classList.add('reveal'); // Hiện CV wrapper với hiệu ứng
+                    cvWrapper.classList.remove("hidden"); // Đảm bảo không còn class hidden
+                    body.classList.add('cv-active'); // Đổi màu nền của body
 
-                // Kích hoạt reveal cho các section đang trong view ngay lập tức khi CV hiện ra
-                sections.forEach(section => {
-                    if (isElementInViewport(section)) {
-                        section.classList.add('reveal');
-                    } else {
-                        // Đảm bảo các section không trong view bị làm mờ ban đầu
-                        section.classList.remove('reveal');
-                    }
-                });
-            });
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            const cvNavLinks = document.querySelectorAll(".cv-navbar a");
-            const sections = document.querySelectorAll(".main-content .section");
-
-            cvNavLinks.forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-
-                    if (targetElement) {
-                        const cvNavbar = document.querySelector(".cv-navbar");
-                        let offset = 0;
-                        if (cvNavbar) {
-                            offset += cvNavbar.offsetHeight;
+                    // Kích hoạt reveal cho các section đang trong view ngay lập tức khi CV hiện ra
+                    sections.forEach(section => {
+                        if (isElementInViewport(section)) {
+                            section.classList.add('reveal');
+                        } else {
+                            section.classList.remove('reveal');
                         }
-                        // Add some extra padding to prevent content from being directly under fixed navbar
-                        offset += 20;
-
-                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                        const offsetPosition = elementPosition - offset;
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+                    });
+                }, 500);
             });
+        }
 
-            // =========================================================
-            // SCRIPT CHÍNH CHO HIỆU ỨNG SCROLL REVEAL CÁC SECTION
-            // =========================================================
-            const sectionRevealObserverOptions = {
-                root: null, // viewport as the root
-                rootMargin: '0px',
-                threshold: 0.3 // Trigger when 30% of the element is visible
-            };
+        const cvNavLinks = document.querySelectorAll(".cv-navbar a");
+        const sections = document.querySelectorAll(".main-content .section");
 
-            const sectionRevealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('reveal'); // Thêm class 'reveal' khi section đi vào tầm nhìn
-                    } else {
-                        // KHI SECTION RỜI KHỎI TẦM NHÌN, BỎ CLASS 'REVEAL' ĐỂ LÀM MỜ LẠI
-                        entry.target.classList.remove('reveal');
+        cvNavLinks.forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const cvNavbar = document.querySelector(".cv-navbar");
+                    let offset = 0;
+                    if (cvNavbar) {
+                        offset += cvNavbar.offsetHeight;
                     }
-                });
-            }, sectionRevealObserverOptions);
+                    offset += 20;
 
-            sections.forEach(section => {
-                sectionRevealObserver.observe(section); // Bắt đầu quan sát từng section
-                // Ngay lập tức áp dụng trạng thái ban đầu (kém nổi bật) cho tất cả các section khi DOM loaded
-                // Trừ khi nó đã ở trong viewport (được xử lý ở phần "view-cv-btn" click)
-                if (!isElementInViewport(section)) {
-                    section.classList.remove('reveal'); // Đảm bảo không có reveal ban đầu
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
                 }
-            });
-
-            // Hàm kiểm tra một phần tử có trong viewport hay không (hữu ích khi tải trang/click button)
-            function isElementInViewport(el) {
-                const rect = el.getBoundingClientRect();
-                // Điều chỉnh một chút để khớp với logic threshold của observer nếu cần
-                // Ở đây, tôi giữ nguyên cho sự đơn giản.
-                return (
-                    rect.top >= 0 &&
-                    rect.left >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.right <= (window.innerWidth || document.documentElement.clientWidth) &&
-                    rect.right >= 0 // Thêm điều kiện này để tránh các phần tử nằm ngoài màn hình bên phải
-                );
-            }
-
-            // =========================================================
-            // SCRIPT HIỆN TẠI ĐỂ ACTIVE NAVBAR LINK (GIỮ NGUYÊN)
-            // =========================================================
-            const navbarActiveObserverOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.6
-            };
-
-            const navbarActiveObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.getAttribute('id');
-                        cvNavLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${id}`) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }, navbarActiveObserverOptions);
-
-            sections.forEach(section => {
-                navbarActiveObserver.observe(section);
             });
         });
-    </script>
 
-</body>
-</html>
+        // =========================================================
+        // SCRIPT CHÍNH CHO HIỆU ỨNG SCROLL REVEAL CÁC SECTION
+        // =========================================================
+        const sectionRevealObserverOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3
+        };
+
+        const sectionRevealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                } else {
+                    entry.target.classList.remove('reveal');
+                }
+            });
+        }, sectionRevealObserverOptions);
+
+        sections.forEach(section => {
+            sectionRevealObserver.observe(section);
+            if (!isElementInViewport(section)) {
+                section.classList.remove('reveal');
+            }
+        });
+
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth) &&
+                rect.right >= 0
+            );
+        }
+
+        // =========================================================
+        // SCRIPT HIỆN TẠI ĐỂ ACTIVE NAVBAR LINK
+        // =========================================================
+        const navbarActiveObserverOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px',
+            threshold: 0
+        };
+
+        const navbarActiveObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    cvNavLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, navbarActiveObserverOptions);
+
+        sections.forEach(section => {
+            navbarActiveObserver.observe(section);
+        });
+
+        // =========================================================
+        // SCRIPT CẢI TIẾN ĐỂ TẠO ICON RANDOM VÀ TRẢI ĐỀU HƠN VỚI KHOẢNG CÁCH TỐI THIỂU
+        // =========================================================
+
+        const randomIcons = [
+            "\uf007", // User
+            "\uf2b9", // Address book
+            "\uf0b1", // Briefcase
+            "\uf1ad", // Building
+            "\uf0a3", // Folder
+            "\uf1c9", // File code
+            "\uf121", // Code
+            "\uf085", // Cogs
+            "\uf1e3", // Running
+            "\uf004", // Heart
+            "\uf0e0", // Envelope
+            "\uf095", // Phone
+            "\uf10b", // Desktop
+            "\uf21b", // Rocket
+            "\uf0eb", // Lightbulb
+            "\uf0c0", // Users
+            "\uf005", // Star
+            "\uf0ad", // Wrench
+            "\uf13b", // Laptop
+            "\uf0ae", // Fingerprint
+            "\uf002", // Search
+            "\uf013", // Cog
+            "\uf06c", // Cloud
+            "\uf15a", // Dollar Sign
+            "\uf0f3", // Bell
+            "\uf0e7", // Lightning bolt
+            "\uf06d" // Fire
+        ];
+
+        const numberOfIcons = 30; // Số lượng icon. Bạn có thể tăng hoặc giảm.
+        const iconContainer = document.body;
+
+        // Khoảng cách tối thiểu giữa các icon (tính bằng viewport units - vw/vh)
+        // Đây là thông số quan trọng nhất để điều chỉnh khoảng cách
+        const minDistance = 15; // Ví dụ: 15vw/vh. Điều chỉnh số này để thay đổi khoảng cách.
+
+        // Mảng để lưu trữ các vị trí (left, top) của các icon đã được đặt
+        const placedIcons = [];
+
+        function createRandomBackgroundIcons() {
+            for (let i = 0; i < numberOfIcons; i++) {
+                const iconElement = document.createElement('i');
+                iconElement.classList.add('background-icon');
+
+                const randomIndex = Math.floor(Math.random() * randomIcons.length);
+                iconElement.textContent = randomIcons[randomIndex];
+
+                let randomLeft, randomTop;
+                let attempts = 0;
+                const maxAttempts = 100; // Tăng số lần thử để tìm vị trí hợp lệ
+
+                // Vòng lặp để tìm một vị trí ngẫu nhiên không quá gần các icon đã có
+                do {
+                    randomLeft = Math.random() * 90 + 5; // Từ 5vw đến 95vw, tránh sát mép
+                    randomTop = Math.random() * 90 + 5;  // Từ 5vh đến 95vh, tránh sát mép
+
+                    let tooClose = false;
+                    for (let j = 0; j < placedIcons.length; j++) {
+                        const existingIcon = placedIcons[j];
+                        // Tính khoảng cách Euclid giữa icon mới và icon cũ
+                        const distance = Math.sqrt(
+                            Math.pow(randomLeft - existingIcon.left, 2) +
+                            Math.pow(randomTop - existingIcon.top, 2)
+                        );
+
+                        if (distance < minDistance) {
+                            tooClose = true;
+                            break; // Nếu quá gần, thoát vòng lặp và thử lại vị trí khác
+                        }
+                    }
+                    if (!tooClose) {
+                        placedIcons.push({ left: randomLeft, top: randomTop });
+                        break; // Tìm được vị trí hợp lệ, thoát vòng lặp do-while
+                    }
+                    attempts++;
+                } while (attempts < maxAttempts);
+
+                // Nếu sau nhiều lần thử mà không tìm được vị trí (rất hiếm khi xảy ra)
+                // Hoặc nếu muốn đảm bảo tất cả icon đều được đặt
+                // Có thể bỏ qua kiểm tra khoảng cách cho icon này hoặc đặt nó gần nhất
+                if (attempts === maxAttempts && placedIcons.length <= i) {
+                    // Fallback: Nếu không tìm được vị trí lý tưởng, đặt nó một cách đơn giản
+                    // console.warn("Could not find ideal spaced position for icon " + i);
+                    randomLeft = Math.random() * 100;
+                    randomTop = Math.random() * 100;
+                    placedIcons.push({ left: randomLeft, top: randomTop });
+                }
+
+
+                iconElement.style.left = `${randomLeft}vw`;
+                iconElement.style.top = `${randomTop}vh`;
+
+                // Kích thước ngẫu nhiên nhưng có thể giới hạn hơn để dễ quản lý khoảng cách
+                const randomSize = Math.random() * (180 - 60) + 60; // Kích thước từ 60px đến 180px
+                iconElement.style.fontSize = `${randomSize}px`;
+
+                const randomRotate = Math.random() * 360 - 180;
+                iconElement.style.transform = `rotate(${randomRotate}deg)`;
+
+                const randomAnimationDelay = Math.random() * 20;
+                iconElement.style.animationDelay = `${randomAnimationDelay}s`;
+                
+                const initialOpacity = Math.random() * 0.05;
+                iconElement.style.opacity = `${initialOpacity}`;
+
+                iconContainer.appendChild(iconElement);
+            }
+        }
+
+        createRandomBackgroundIcons();
+    });
+</script>

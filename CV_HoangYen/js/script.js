@@ -42,17 +42,15 @@ document.querySelectorAll(".nav-link").forEach(link => {
 const typedText = document.querySelector(".typed");
 const phrases = [
   "Xin chào, mình là Vũ Hoàng Yến",
-  "Front-end Developer"
+  "Front-end Developer",
 ];
 let phraseIndex = 0;
 let letterIndex = 0;
 let isDeleting = false;
 const typingSpeed = 120;
-
 function typeWriter() {
   const currentPhrase = phrases[phraseIndex];
   typedText.textContent = currentPhrase.substring(0, letterIndex);
-
   if (!isDeleting && letterIndex < currentPhrase.length) {
     letterIndex++;
     setTimeout(typeWriter, typingSpeed);
@@ -61,7 +59,7 @@ function typeWriter() {
     setTimeout(typeWriter, typingSpeed / 2);
   } else if (!isDeleting && letterIndex === currentPhrase.length) {
     isDeleting = true;
-    setTimeout(typeWriter, 1500);
+    setTimeout(typeWriter, 1800);
   } else if (isDeleting && letterIndex === 0) {
     isDeleting = false;
     phraseIndex = (phraseIndex + 1) % phrases.length;
@@ -84,7 +82,9 @@ typeWriter();
 
   // Star object: twinkling stars
   class Star {
-    constructor() { this.reset(); }
+    constructor() {
+      this.reset();
+    }
     reset() {
       this.x = random(0, width);
       this.y = random(0, height);
@@ -96,8 +96,13 @@ typeWriter();
     }
     update() {
       this.alpha += this.alphaDirection * this.alphaSpeed;
-      if (this.alpha >= 1) { this.alphaDirection = -1; this.alpha = 1; }
-      else if (this.alpha <= 0.2) { this.alphaDirection = 1; this.alpha = 0.2; }
+      if (this.alpha >= 1) {
+        this.alphaDirection = -1;
+        this.alpha = 1;
+      } else if (this.alpha <= 0.2) {
+        this.alphaDirection = 1;
+        this.alpha = 0.2;
+      }
     }
     draw() {
       ctx.beginPath();
@@ -111,7 +116,9 @@ typeWriter();
 
   // Shooting star
   class ShootingStar {
-    constructor() { this.reset(); }
+    constructor() {
+      this.reset();
+    }
     reset() {
       this.x = random(width * 0.1, width * 0.9);
       this.y = random(0, height * 0.5);
@@ -216,14 +223,20 @@ typeWriter();
 
   function animate() {
     ctx.clearRect(0, 0, width, height);
-    stars.forEach(star => { star.update(); star.draw(); });
+    stars.forEach(star => {
+      star.update();
+      star.draw();
+    });
     createShootingStar();
     shootingStars.forEach((star, idx) => {
       star.update();
       star.draw();
       if (!star.isAlive) shootingStars.splice(idx, 1);
     });
-    planets.forEach(planet => { planet.update(); planet.draw(); });
+    planets.forEach(planet => {
+      planet.update();
+      planet.draw();
+    });
     requestAnimationFrame(animate);
   }
 
@@ -244,3 +257,103 @@ document.querySelectorAll('.flip-card').forEach(card => {
     }
   });
 });
+
+// THEME TOGGLE
+// Chuyển đổi chu kỳ mặt trăng mặt trời
+
+const themeToggleIcon = document.querySelector('#theme-toggle .material-icons');
+
+function switchIconToLight() {
+  themeToggleIcon.textContent = 'light_mode';
+  document.body.classList.remove('dark-theme');
+}
+
+function switchIconToDark() {
+  themeToggleIcon.textContent = 'dark_mode';
+  document.body.classList.add('dark-theme');
+}
+
+function toggleTheme() {
+  if (document.body.classList.contains('dark-theme')) {
+    switchIconToLight();
+  } else {
+    switchIconToDark();
+  }
+}
+
+// Khởi tạo với chế độ tối hoặc chế độ sáng tùy theo sở thích
+switchIconToLight();
+
+// Tự động chuyển đổi sau mỗi 3 giây
+let autoToggle = setInterval(() => {
+  toggleTheme();
+}, 3000);
+
+// Giữ cho nút chuyển đổi thủ công hoạt động
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.onclick = () => {
+  toggleTheme();
+  clearInterval(autoToggle);
+  autoToggle = setInterval(() => {
+    toggleTheme();
+  }, 3000);
+};
+themeToggle.addEventListener('keypress', e => {
+  if (e.key === 'Enter' || e.key === ' ') {
+    toggleTheme();
+    e.preventDefault();
+    clearInterval(autoToggle);
+    autoToggle = setInterval(() => {
+      toggleTheme();
+    }, 6000);
+  }
+});
+
+// DOWNLOAD CV BUTTON SIMULATION
+const downloadCVBtn = document.getElementById('download-cv-btn');
+downloadCVBtn.addEventListener('click', () => {
+  const link = document.createElement('a');
+  link.href = '../html/CV_HoangYen.pdf';  // Đường dẫn tới file PDF đúng
+  link.download = 'CV_HoangYen.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+});
+
+// CONTACT FORM VALIDATION AND FEEDBACK
+const contactForm = document.getElementById('contact-form');
+const contactFeedback = document.getElementById('contact-feedback');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const email = contactForm.elements['email'];
+    const message = contactForm.elements['message'];
+
+    if (!email.value || !message.value) {
+      contactFeedback.textContent = 'Vui lòng nhập đầy đủ thông tin.';
+      contactFeedback.style.color = '#ff6b6b';
+      return;
+    }
+
+    if (!validateEmail(email.value)) {
+      contactFeedback.textContent = 'Email không hợp lệ.';
+      contactFeedback.style.color = '#ff6b6b';
+      email.focus();
+      return;
+    }
+
+    // Mô phỏng việc gửi tin nhắn
+    contactFeedback.textContent = 'Đang gửi...';
+    contactFeedback.style.color = '#06b6d4';
+    setTimeout(() => {
+      contactFeedback.textContent = 'Gửi liên hệ thành công! Cảm ơn bạn đã liên hệ.';
+      contactForm.reset();
+    }, 1500);
+  });
+}
+
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email.toLowerCase());
+}

@@ -1,11 +1,11 @@
 /* Custom Properties (Biến CSS) */
 :root {
-    --primary-color: #007bff; /* Xanh dương chính */
-    --primary-color-rgb: 0, 123, 255; /* Giá trị RGB cho primary-color, để dùng với rgba() */
-    --secondary-color: #2c3e50; /* Xám xanh đậm */
+    --primary-color: #007bff;
+    --primary-color-rgb: 0, 123, 255;
+    --secondary-color: #2c3e50;
     --text-color-dark: #333;
     --text-color-medium: #666;
-    --text-color-light: #f4f7f6; /* Dùng cho text trên nền tối */
+    --text-color-light: #f4f7f6;
     --bg-light: #f4f7f6;
     --bg-white: #fff;
     --border-color: #eee;
@@ -15,8 +15,8 @@
     --transition-speed: 0.3s;
     --transition-timing-function: ease-in-out;
     --font-poppins: 'Poppins', sans-serif;
-    --header-height: 70px; /* Chiều cao cố định của header */
-    --side-nav-width: 160px; /* Đã CHỈNH SỬA: Chiều rộng của thanh điều hướng bên (nhỏ hơn nữa) */
+    --header-height: 70px;
+    --side-nav-width: 160px;
 }
 
 /* General Reset & Base Styles */
@@ -35,34 +35,29 @@ body {
     line-height: 1.6;
     color: var(--text-color-dark);
     background-color: var(--bg-light);
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    min-height: 100vh; /* Ensure body takes full viewport height */
+    overflow-x: hidden;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /* Đã CHỈNH SỬA: Thêm padding bên trái để không bị thanh điều hướng che mất nội dung */
     padding-left: var(--side-nav-width);
-    padding-right: 0; /* Đảm bảo không có padding thừa bên phải */
+    padding-right: 0;
 }
 
 /* --- Hero Section (Trang chủ) --- */
 .hero-section {
     position: relative;
-    /* Đã CHỈNH SỬA: Đảm bảo width là 100vw để chiếm toàn bộ viewport width */
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #e0f2f7 0%, #c4e9f7 100%); /* Blue gradient background */
+    background: linear-gradient(135deg, #e0f2f7 0%, #c4e9f7 100%);
     overflow: hidden;
-    transition: opacity 0.6s var(--transition-timing-function); /* For fade-out effect */
-    /* Đã CHỈNH SỬA: Dịch sang trái bằng khoảng cách của thanh điều hướng */
+    transition: opacity 0.6s var(--transition-timing-function);
     margin-left: calc(-1 * var(--side-nav-width));
-    /* Đã CHỈNH SỬA: Thêm padding để nội dung không bị che bởi thanh điều hướng */
     padding-left: var(--side-nav-width);
 }
 
-/* Thêm hiệu ứng gợn sóng nền */
 .hero-section::before,
 .hero-section::after {
     content: '';
@@ -70,8 +65,8 @@ body {
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
     opacity: 0.7;
-    z-index: 1; /* Đảm bảo nằm sau nội dung hero nhưng trước background */
-    filter: blur(50px); /* Làm mờ để tạo hiệu ứng mềm mại */
+    z-index: 1;
+    filter: blur(50px);
 }
 
 .hero-section::before {
@@ -116,13 +111,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 80px; /* Space between text and image */
+    gap: 80px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     position: relative;
     z-index: 10;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    flex-wrap: wrap;
 }
 
 .hero-text {
@@ -152,7 +147,7 @@ body {
     color: var(--primary-color);
     font-weight: 600;
     margin-bottom: 25px;
-    min-height: 2.2em; /* Prevent layout shift during typing */
+    min-height: 2.2em;
 }
 
 .hero-description {
@@ -208,7 +203,7 @@ body {
 }
 
 .social-icon-btn:hover {
-    color: #0056b3; /* Darker primary color */
+    color: #0056b3;
     transform: translateY(-8px) scale(1.1);
 }
 
@@ -217,7 +212,7 @@ body {
     color: var(--bg-white);
     padding: 15px 30px;
     border: none;
-    border-radius: 50px; /* Pill shape */
+    border-radius: 50px;
     font-size: 1.1em;
     font-weight: 600;
     cursor: pointer;
@@ -229,15 +224,15 @@ body {
 }
 
 #view-cv-btn:hover {
-    background-color: #0056b3; /* Darker primary color */
+    background-color: #0056b3;
     transform: translateY(-3px);
     box-shadow: var(--shadow-hover);
 }
 
 #view-cv-btn:active {
-    transform: translateY(0px) scale(0.98); /* Hiệu ứng nhấn xuống */
-    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.5); /* Shadow nhỏ hơn khi nhấn */
-    transition: transform 0.1s ease-out, box-shadow 0.1s ease-out; /* Chuyển động nhanh hơn */
+    transform: translateY(0px) scale(0.98);
+    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.5);
+    transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
 }
 
 #view-cv-btn i {
@@ -262,7 +257,7 @@ body {
 
 .animate-fade-in-up {
     animation: fadeInUp 0.8s var(--transition-timing-function) forwards;
-    opacity: 0; /* Hidden by default */
+    opacity: 0;
 }
 
 .delay-1 { animation-delay: 0.2s; }
@@ -291,7 +286,7 @@ body {
 
 /* --- CV Wrapper & Main Content --- */
 #cv-wrapper {
-    transition: opacity 0.6s var(--transition-timing-function); /* For fade-in effect */
+    transition: opacity 0.6s var(--transition-timing-function);
     flex-grow: 1;
 }
 
@@ -305,21 +300,21 @@ body {
 
 /* --- Main Header (Side Navigation) --- */
 .main-header {
-    position: fixed; /* Keep header fixed on scroll */
+    position: fixed;
     top: 0;
-    left: 0; /* Đã CHỈNH SỬA: Căn lề trái */
-    right: unset; /* Đã CHỈNH SỬA: Bỏ căn lề phải */
-    height: 100vh; /* Take full viewport height */
+    left: 0;
+    right: unset;
+    height: 100vh;
     width: var(--side-nav-width);
-    background-color: var(--secondary-color); /* Darker background for nav */
+    background-color: var(--secondary-color);
     color: var(--text-color-light);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 15px 0; /* Đã CHỈNH SỬA: Giảm padding tổng thể của header */
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1); /* Đã CHỈNH SỬA: Shadow on the right side */
-    z-index: 1000; /* Ensure it stays on top */
-    overflow-y: auto; /* Allow scrolling for many nav links */
+    padding: 15px 0;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow-y: auto;
 }
 
 .header-content {
@@ -333,70 +328,70 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px; /* Đã CHỈNH SỬA: Giảm margin-bottom */
+    margin-bottom: 20px;
     text-align: center;
 }
 
 .profile-photo-small {
-    width: 80px; /* Đã CHỈNH SỬA: Giảm kích thước ảnh đại diện */
-    height: 80px; /* Đã CHỈNH SỬA: Giảm kích thước ảnh đại diện */
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--primary-color); /* Đã CHỈNH SỬA: Giảm độ dày border */
-    margin-bottom: 8px; /* Đã CHỈNH SỬA: Giảm margin-bottom */
+    border: 3px solid var(--primary-color);
+    margin-bottom: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .site-logo span {
-    font-size: 0.9em; /* Đã CHỈNH SỬA: Giảm kích thước font cho tên/logo */
+    font-size: 0.9em;
     font-weight: 600;
     color: var(--bg-white);
-    white-space: nowrap; /* Prevent name from wrapping too much */
+    white-space: nowrap;
 }
 
 .main-nav {
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0 10px; /* Đã CHỈNH SỬA: Giảm padding ngang */
+    padding: 0 10px;
 }
 
 .nav-link {
     display: flex;
     align-items: center;
-    padding: 10px 10px; /* Đã CHỈNH SỬA: Giảm padding để link nhỏ hơn */
+    padding: 10px 10px;
     color: var(--bg-white);
     text-decoration: none;
-    font-size: 0.85em; /* Đã CHỈNH SỬA: Giảm kích thước font cho các liên kết */
+    font-size: 0.85em;
     font-weight: 500;
     border-radius: 5px;
-    margin-bottom: 6px; /* Đã CHỈNH SỬA: Giảm margin-bottom */
+    margin-bottom: 6px;
     transition: background-color var(--transition-speed) var(--transition-timing-function), color var(--transition-speed) var(--transition-timing-function), transform var(--transition-speed) var(--transition-timing-function);
 }
 
 .nav-link i {
-    margin-right: 8px; /* Đã CHỈNH SỬA: Giảm margin cho icon */
-    font-size: 0.9em; /* Đã CHỈNH SỬA: Giảm kích thước icon */
-    color: var(--primary-color); /* Icon color */
+    margin-right: 8px;
+    font-size: 0.9em;
+    color: var(--primary-color);
     transition: color var(--transition-speed) var(--transition-timing-function);
 }
 
 .nav-link:hover {
     background-color: rgba(var(--primary-color-rgb), 0.2);
     color: var(--primary-color);
-    transform: translateX(3px); /* Đã CHỈNH SỬA: Di chuyển ít hơn khi hover */
+    transform: translateX(3px);
 }
 
 .nav-link.active {
     background-color: var(--primary-color);
     color: var(--bg-white);
     box-shadow: 0 3px 10px rgba(var(--primary-color-rgb), 0.4);
-    transform: translateX(0); /* Remove transform for active */
+    transform: translateX(0);
 }
 
 .nav-link.active i {
     color: var(--bg-white);
-    animation: pulsateIcon 1.5s infinite ease-in-out; /* Hiệu ứng nhấp nháy/pulsate */
+    animation: pulsateIcon 1.5s infinite ease-in-out;
 }
 
 @keyframes pulsateIcon {
@@ -408,13 +403,13 @@ body {
 
 /* --- Main Content Wrapper (Padding for fixed header) --- */
 .main-content-wrapper {
-    flex-grow: 1; /* Allow content to grow and push footer down */
+    flex-grow: 1;
     padding-top: 20px;
-    padding-left: 20px; /* Đã CHỈNH SỬA: Giữ padding trái */
-    padding-right: 20px; /* Đã CHỈNH SỬA: Thêm padding phải để cân bằng nội dung */
-    max-width: calc(100% - var(--side-nav-width) - 40px); /* Max width minus nav and padding */
-    margin-left: 20px; /* Đã CHỈNH SỬA: Thêm margin trái để cân bằng nội dung */
-    margin-right: auto; /* Đã CHỈNH SỬA: Đẩy nội dung sang phải của nav */
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: calc(100% - var(--side-nav-width) - 40px);
+    margin-left: 20px;
+    margin-right: auto;
 }
 
 .main-content {
@@ -423,7 +418,7 @@ body {
     padding: 20px;
     background-color: var(--bg-white);
     border-radius: 8px;
-    box-shadow: var(--shadow-light); /* Stronger shadow for main content box */
+    box-shadow: var(--shadow-light);
 }
 
 /* --- Section General Styles --- */
@@ -431,17 +426,17 @@ body {
     padding: 40px 0;
     border-bottom: 1px solid var(--border-color);
     opacity: 0;
-    transform: translateY(80px) scale(0.98); /* Thêm scale ban đầu và tăng khoảng cách ẩn hiện */
-    filter: blur(5px); /* Thêm hiệu ứng mờ */
+    transform: translateY(80px) scale(0.98);
+    filter: blur(5px);
     transition: opacity 0.8s var(--transition-timing-function),
                 transform 0.8s var(--transition-timing-function),
-                filter 0.8s var(--transition-timing-function); /* Kéo dài thời gian chuyển động */
+                filter 0.8s var(--transition-timing-function);
 }
 
 .section.reveal {
     opacity: 1;
-    transform: translateY(0) scale(1); /* Về trạng thái bình thường */
-    filter: blur(0); /* Hết mờ */
+    transform: translateY(0) scale(1);
+    filter: blur(0);
 }
 
 .section:last-child {
@@ -473,44 +468,38 @@ body {
 .alternating-section .section-content-wrapper {
     display: flex;
     align-items: center;
-    /* Đã CHỈNH SỬA: Đặt khoảng cách giữa các phần tử */
-    justify-content: space-between; /* Hoặc 'space-between' tùy ý bạn */
+    justify-content: space-between;
     flex-wrap: wrap;
-    /* Đã CHỈNH SỬA: Hình ảnh luôn nằm bên phải (order đảo ngược) */
     flex-direction: row-reverse;
 }
 
-/* Cấu trúc chung cho nội dung trong section */
 .section-text-content {
-    /* Đã CHỈNH SỬA: Cho cả hai phần tử chiếm không gian tương đương */
     flex: 1;
-    min-width: 300px; /* Đảm bảo đủ không gian cho văn bản */
+    min-width: 300px;
     padding: 10px;
 }
 
 .section-image-wrapper {
-    /* Đã CHỈNH SỬA: Cho cả hai phần tử chiếm không gian tương đương */
     flex: 1;
-    min-width: 180px; /* Điều chỉnh min-width của wrapper để đảm bảo ảnh có chỗ */
-    max-width: 300px; /* Điều chỉnh max-width của wrapper để ảnh không quá to */
+    min-width: 180px;
+    max-width: 300px;
     display: flex;
-    justify-content: center; /* Căn giữa ảnh trong wrapper của nó */
+    justify-content: center;
     align-items: center;
     padding: 10px;
 }
 
 .section-image {
-    /* Đã CHỈNH SỬA: Kích thước ảnh bên trong wrapper, đảm bảo nó nhỏ hơn wrapper */
-    max-width: 85%; /* Giảm kích thước hình ảnh so với wrapper của nó */
+    max-width: 85%;
     height: auto;
-    object-fit: contain; /* Đảm bảo hình ảnh được chứa trọn vẹn trong khung */
+    object-fit: contain;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform var(--transition-speed) var(--transition-timing-function);
 }
 
 .section-image:hover {
-    transform: scale(1.05); /* Tăng nhẹ scale khi hover */
+    transform: scale(1.05);
 }
 
 
@@ -546,103 +535,103 @@ body {
 
 /* Education & Experience Sections */
 .education-item, .experience-item {
-    margin-bottom: 20px; /* Giảm margin-bottom */
-    padding: 18px; /* Giảm padding */
+    margin-bottom: 20px;
+    padding: 18px;
     background-color: var(--bg-light);
     border-left: 5px solid var(--primary-color);
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     transition: transform var(--transition-speed) var(--transition-timing-function),
                 box-shadow var(--transition-speed) var(--transition-timing-function);
-    perspective: 1000px; /* Thêm perspective cho hiệu ứng 3D */
+    perspective: 1000px;
 }
 
 .education-item:hover, .experience-item:hover {
-    transform: translateY(-6px) rotateX(1deg) rotateY(-1deg); /* Di chuyển và xoay nhẹ ít hơn */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Shadow mạnh hơn khi hover */
+    transform: translateY(-6px) rotateX(1deg) rotateY(-1deg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .education-item h3, .experience-item h3 {
     color: var(--primary-color);
     margin-bottom: 5px;
-    font-size: 1.2em; /* Giảm font-size */
+    font-size: 1.2em;
 }
 
 .education-item p, .experience-item p {
     color: var(--text-color-medium);
-    margin-bottom: 8px; /* Giảm margin-bottom */
-    font-size: 0.95em; /* Giảm font-size */
+    margin-bottom: 8px;
+    font-size: 0.95em;
 }
 
 .experience-time {
     font-style: italic;
-    font-size: 0.85em; /* Giảm font-size */
+    font-size: 0.85em;
     color: #777;
 }
 
 .education-item ul, .experience-item ul {
     list-style: disc;
-    margin-left: 20px; /* Giảm margin-left */
+    margin-left: 20px;
     color: var(--text-color-dark);
 }
 
 .education-item ul li, .experience-item ul li {
-    margin-bottom: 3px; /* Giảm margin-bottom */
-    font-size: 0.9em; /* Giảm font-size */
+    margin-bottom: 3px;
+    font-size: 0.9em;
 }
 
 /* Skills Section */
 #skills ul {
-    list-style: none; /* Remove default bullet */
+    list-style: none;
     padding: 0;
 }
 
 #skills ul li {
-    background-color: #e9f7fe; /* Light blue background */
-    padding: 9px 14px; /* Giảm padding */
-    margin-bottom: 8px; /* Giảm margin-bottom */
+    background-color: #e9f7fe;
+    padding: 9px 14px;
+    margin-bottom: 8px;
     border-radius: 5px;
     display: flex;
     align-items: center;
-    gap: 9px; /* Giảm gap */
+    gap: 9px;
     font-weight: 500;
     color: var(--secondary-color);
     border-left: 4px solid var(--primary-color);
-    font-size: 0.95em; /* Giảm font-size */
+    font-size: 0.95em;
 }
 #skills ul li::before {
-    content: "\f00c"; /* Font Awesome check icon */
+    content: "\f00c";
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     color: var(--primary-color);
-    font-size: 0.85em; /* Giảm font-size */
+    font-size: 0.85em;
 }
 
 /* Projects Section */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Giảm minmax */
-    gap: 25px; /* Giảm gap */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 .project-item {
     background-color: var(--bg-white);
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Giảm shadow một chút */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform var(--transition-speed) var(--transition-timing-function),
                 box-shadow var(--transition-speed) var(--transition-timing-function);
-    perspective: 1000px; /* Thêm perspective cho hiệu ứng 3D */
+    perspective: 1000px;
 }
 
 .project-item:hover {
-    transform: translateY(-6px) rotateX(1deg) rotateY(-1deg); /* Di chuyển và xoay nhẹ ít hơn */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Shadow mạnh hơn khi hover */
+    transform: translateY(-6px) rotateX(1deg) rotateY(-1deg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .project-image-container {
     width: 100%;
-    height: 180px; /* Giảm chiều cao của ảnh project */
+    height: 180px;
     overflow: hidden;
 }
 
@@ -658,55 +647,55 @@ body {
 }
 
 .project-details {
-    padding: 18px; /* Giảm padding */
+    padding: 18px;
 }
 
 .project-details h3 {
-    font-size: 1.4em; /* Giảm font-size */
+    font-size: 1.4em;
     color: var(--secondary-color);
-    margin-bottom: 8px; /* Giảm margin-bottom */
+    margin-bottom: 8px;
 }
 
 .project-details p {
     color: var(--text-color-medium);
-    font-size: 0.9em; /* Giảm font-size */
-    margin-bottom: 12px; /* Giảm margin-bottom */
+    font-size: 0.9em;
+    margin-bottom: 12px;
 }
 
 .tech-stack {
     display: flex;
     flex-wrap: wrap;
-    gap: 7px; /* Giảm gap */
-    margin-top: 12px; /* Giảm margin-top */
-    margin-bottom: 15px; /* Giảm margin-bottom */
+    gap: 7px;
+    margin-top: 12px;
+    margin-bottom: 15px;
 }
 
 .tech-tag {
     background-color: var(--primary-color);
     color: var(--bg-white);
-    padding: 4px 10px; /* Giảm padding */
+    padding: 4px 10px;
     border-radius: 20px;
-    font-size: 0.8em; /* Giảm font-size */
+    font-size: 0.8em;
     font-weight: 500;
 }
 
 .project-links {
     display: flex;
-    gap: 12px; /* Giảm gap */
-    margin-top: 12px; /* Giảm margin-top */
+    gap: 12px;
+    margin-top: 12px;
 }
 
 .project-link-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px; /* Giảm gap */
+    gap: 6px;
     background-color: var(--primary-color);
     color: var(--bg-white);
-    padding: 9px 18px; /* Giảm padding */
+    padding: 9px 18px;
     border-radius: 25px;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.85em; /* Giảm font-size */
+    font-size: 0.85em;
     transition: background-color var(--transition-speed) var(--transition-timing-function), transform var(--transition-speed) var(--transition-timing-function);
 }
 
@@ -718,80 +707,80 @@ body {
 /* Hobbies Section */
 .hobby-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Giảm minmax */
-    gap: 18px; /* Giảm gap */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 18px;
     text-align: center;
 }
 
 .hobby-item {
     background-color: var(--bg-white);
-    padding: 18px; /* Giảm padding */
+    padding: 18px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); /* Giảm shadow */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     transition: transform var(--transition-speed) var(--transition-timing-function),
                 background-color var(--transition-speed) var(--transition-timing-function),
-                box-shadow var(--transition-speed) var(--transition-timing-function); /* Thêm box-shadow vào transition */
-    perspective: 1000px; /* Thêm perspective cho hiệu ứng 3D */
+                box-shadow var(--transition-speed) var(--transition-timing-function);
+    perspective: 1000px;
 }
 
 .hobby-item:hover {
-    transform: translateY(-4px) rotateX(1deg) rotateY(-1deg); /* Di chuyển và xoay nhẹ ít hơn */
-    background-color: #e9f7fe; /* Light blue on hover */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Shadow mạnh hơn khi hover */
+    transform: translateY(-4px) rotateX(1deg) rotateY(-1deg);
+    background-color: #e9f7fe;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .hobby-item i {
-    font-size: 2.5em; /* Giảm font-size */
+    font-size: 2.5em;
     color: var(--primary-color);
-    margin-bottom: 8px; /* Giảm margin-bottom */
+    margin-bottom: 8px;
 }
 
 .hobby-item p {
     font-weight: 500;
     color: var(--secondary-color);
-    font-size: 0.85em; /* Giảm font-size */
+    font-size: 0.85em;
 }
 
 /* Contact Section */
 .contact-info p {
     display: flex;
     align-items: center;
-    gap: 12px; /* Giảm gap */
-    margin-bottom: 12px; /* Giảm margin-bottom */
-    font-size: 1em; /* Giảm font-size */
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 1em;
     color: var(--text-color-dark);
 }
 
 .contact-info p i {
     color: var(--primary-color);
-    font-size: 1.2em; /* Giảm font-size */
+    font-size: 1.2em;
 }
 
 .contact-social {
-    margin-top: 20px; /* Giảm margin-top */
+    margin-top: 20px;
     display: flex;
-    gap: 18px; /* Giảm gap */
+    gap: 18px;
 }
 
 .icon-box {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 45px; /* Giảm kích thước box */
-    height: 45px; /* Giảm kích thước box */
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background-color: var(--primary-color);
     color: var(--bg-white);
-    font-size: 1.6em; /* Giảm font-size */
+    font-size: 1.6em;
     text-decoration: none;
     transition: background-color var(--transition-speed) var(--transition-timing-function), transform var(--transition-speed) var(--transition-timing-function), box-shadow var(--transition-speed) var(--transition-timing-function);
-    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.25); /* Giảm shadow */
+    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.25);
 }
 
 .icon-box:hover {
     background-color: #0056b3;
-    transform: translateY(-4px) scale(1.03); /* Di chuyển và scale nhẹ hơn */
-    box-shadow: 0 5px 12px rgba(var(--primary-color-rgb), 0.35); /* Shadow mạnh hơn khi hover */
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 5px 12px rgba(var(--primary-color-rgb), 0.35);
 }
 
 /* --- Footer --- */
@@ -809,11 +798,10 @@ footer {
 .background-icon {
     font-family: "Font Awesome 6 Free";
     position: absolute;
-    color: rgba(0, 0, 0, 0.03); /* Rất nhạt */
-    z-index: 0; /* Đảm bảo ở phía sau nội dung */
-    pointer-events: none; /* Không thể tương tác với chuột */
-    transition: opacity 2s ease-out; /* Fade in animation */
-    /* Updated floatingIcons animation with more variables */
+    color: rgba(0, 0, 0, 0.03);
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 2s ease-out;
     animation: floatingIcons 20s infinite ease-in-out alternate;
 }
 
@@ -836,32 +824,32 @@ footer {
 /* Responsive Design */
 @media (max-width: 992px) {
     body {
-        padding-left: 0; /* Remove side padding for smaller screens */
+        padding-left: 0;
     }
 
     .main-header {
-        position: relative; /* Make header static on smaller screens */
+        position: relative;
         width: 100%;
         height: auto;
         padding: 15px 0;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        display: flex; /* Ensure it remains flex */
-        flex-direction: row; /* Layout content horizontally */
+        display: flex;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap; /* Allow wrapping */
+        flex-wrap: wrap;
         left: unset;
         right: unset;
     }
 
     .hero-section {
-        margin-left: 0; /* Reset margin-left */
-        padding-left: 0; /* Reset padding-left */
-        width: 100vw; /* Ensure it still takes full viewport width */
+        margin-left: 0;
+        padding-left: 0;
+        width: 100vw;
     }
 
     .header-content {
-        flex-direction: row; /* Horizontal layout for header content */
+        flex-direction: row;
         justify-content: space-between;
         width: 100%;
         padding: 0 20px;
@@ -875,8 +863,8 @@ footer {
     .profile-photo-small {
         width: 60px;
         height: 60px;
-        margin-right: 15px; /* Add margin to the right */
-        margin-bottom: 0; /* Remove bottom margin */
+        margin-right: 15px;
+        margin-bottom: 0;
     }
 
     .site-logo span {
@@ -884,11 +872,11 @@ footer {
     }
 
     .main-nav {
-        flex-direction: row; /* Display nav links horizontally */
-        flex-wrap: wrap; /* Allow wrapping */
+        flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
         padding: 10px 0;
-        width: auto; /* Let content dictate width */
+        width: auto;
     }
     .main-nav .nav-link {
         padding: 10px 15px;
@@ -901,13 +889,13 @@ footer {
     }
 
     .main-content-wrapper {
-        max-width: 100%; /* Take full width on smaller screens */
+        max-width: 100%;
         padding: 20px;
-        margin: 0 auto; /* Center content */
+        margin: 0 auto;
     }
 
     .hero-content {
-        flex-direction: column; /* Stack hero content vertically */
+        flex-direction: column;
         text-align: center;
         gap: 50px;
     }
@@ -925,29 +913,32 @@ footer {
         height: 280px;
     }
 
-    .alternating-section .section-content-wrapper { /* Áp dụng cho alternating-section */
-        flex-direction: column-reverse; /* Đã CHỈNH SỬA: Hình ảnh ở trên, text ở dưới cho màn hình nhỏ */
-        gap: 30px; /* Giảm khoảng cách khi xếp chồng */
+    .alternating-section .section-content-wrapper {
+        flex-direction: column-reverse;
+        gap: 30px;
     }
 
     .section-text-content {
-        flex: auto; /* Trở lại mặc định khi xếp chồng */
-        min-width: unset; /* Cho phép co lại tự do hơn */
+        flex: auto;
+        min-width: unset;
     }
 
     .section-image-wrapper {
-        flex: auto; /* Trở lại mặc định khi xếp chồng */
-        min-width: 150px; /* Giảm min-width để cho phép ảnh nhỏ hơn khi cần */
-        max-width: 250px; /* Vẫn giữ giới hạn max-width */
+        flex: auto;
+        min-width: 150px;
+        max-width: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
     }
 
     .section-image {
-        /* Đã CHỈNH SỬA: Điều chỉnh kích thước hình ảnh trên màn hình trung bình */
-        max-width: 80%; /* Cho ảnh chiếm nhiều không gian hơn trong wrapper của nó khi ở chế độ cột */
+        max-width: 80%;
     }
 
     .project-grid {
-        grid-template-columns: 1fr; /* Single column for projects */
+        grid-template-columns: 1fr;
     }
 
     .hobby-grid {
@@ -985,15 +976,13 @@ footer {
         height: 3px;
     }
     .section-image-wrapper {
-        min-width: 120px; /* Giảm min-width hơn nữa cho 768px */
-        max-width: 200px; /* Giới hạn max-width hơn nữa cho 768px */
+        min-width: 120px;
+        max-width: 200px;
     }
     .section-image {
-        /* Đã CHỈNH SỬA: Giảm kích thước hình ảnh trên màn hình nhỏ hơn */
-        max-width: 85%; /* Ảnh chiếm gần hết wrapper trên màn hình này */
+        max-width: 85%;
     }
 
-    /* Đã CHỈNH SỬA: Điều chỉnh kích thước box và font-size cho màn hình 768px */
     .education-item, .experience-item {
         padding: 15px;
         margin-bottom: 15px;
@@ -1097,22 +1086,22 @@ footer {
     }
 
     .section-content-wrapper {
-        gap: 20px; /* Reduce gap for smaller screens */
+        gap: 20px;
     }
 
     .section-text-content {
-        min-width: unset; /* Allow content to shrink more */
+        min-width: unset;
         padding: 5px;
     }
 
     .section-image-wrapper {
-        min-width: 100px; /* Vẫn giữ min-width để ảnh không quá nhỏ */
-        max-width: 180px; /* Vẫn giữ giới hạn max-width */
+        min-width: 100px;
+        max-width: 180px;
         padding: 5px;
     }
 
     .section-image {
-        max-width: 90%; /* Giữ kích thước nhỏ nhưng cân đối trên màn hình rất nhỏ */
+        max-width: 90%;
     }
 
     .education-item, .experience-item,
@@ -1166,7 +1155,7 @@ footer {
     }
 
     .hobby-grid {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Even smaller hobby grid items */
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
         gap: 12px;
     }
     .hobby-item i {

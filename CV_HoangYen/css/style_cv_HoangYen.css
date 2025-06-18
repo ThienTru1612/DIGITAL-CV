@@ -1,0 +1,712 @@
+/*--- RESET & BASE STYLES ---*/
+/* Đặt lại margin, padding và box-sizing cho tất cả các phần tử */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Các kiểu cơ bản cho html và body */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;            
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Quicksand', sans-serif;
+  background-color: #0d0d0d;
+  color: #ccffcc;
+}
+
+/*--- BACKGROUND ELEMENTS ---*/
+
+/* Container nền bầu trời đầy sao */
+#sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;  /* Đặt canvas nền thật phía sau cùng */
+  background: radial-gradient(ellipse at center, #000000 0%, #0d0d0d 100%);
+}
+
+/* Canvas cho hoạt ảnh nền sao */
+#starry-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0; /* Đặt canvas nền phía dưới các phần tử nội dung */
+}
+
+/*--- HEADER AND NAVIGATION ---*/
+
+/* Header dính với hiệu ứng mờ và bóng */
+.header {
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: saturate(180%) blur(6px);
+  z-index: 1000;
+  box-shadow: 0 0 10px #1e3a8a; /* Bóng màu xanh đậm */
+}
+
+/* Padding cho container navbar */
+.navbar {
+  padding: 12px 20px;
+}
+
+/* Danh sách điều hướng dưới dạng container flex */
+.nav-list {
+  display: flex;
+  justify-content: flex-end;
+  gap: 28px;
+  list-style: none;
+}
+
+/* Kiểu cho các liên kết điều hướng */
+.nav-link {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #ccffcc;
+  text-decoration: none;
+  position: relative;
+  font-size: 1rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Gạch chân hoạt hình cho các liên kết điều hướng ban đầu có chiều rộng bằng 0 */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; 
+  bottom: -6px;
+  width: 0%;
+  height: 3px;
+  background: #1e3a8a;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+/* Trạng thái hover và focus cho các liên kết điều hướng */
+.nav-link:hover,
+.nav-link:focus {
+  color: #1e3a8a; 
+  text-shadow: 0 0 6px #1e3a8a;
+}
+
+/* gạch chân mở rộng khi hover/focus */
+.nav-link:hover::after,
+.nav-link:focus::after {
+  width: 100%;
+}
+
+/* Kiểu cho liên kết điều hướng đang hoạt động */
+.nav-link.active {
+  color: #06b6d4;
+  text-shadow: 0 0 6px #06b6d4;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 3px;
+  background: #1e3a8a;
+  border-radius: 6px;
+}
+
+/*--- MAIN LAYOUT ---*/
+
+/* Container chính với chiều rộng tối đa */
+main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  max-width: 960px;
+  margin: 38px auto 0 auto;
+  padding: 0 24px 40px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;              /* Đặt main ngang trên canvas nền */
+}
+
+/*--- PAGE SECTIONS ---*/
+
+/* Mỗi phần trang với nền nhẹ, viền và góc bo tròn */
+.page {
+  background: rgba(255 255 255 / 0.03);
+  border: 1px solid #1e3a8a77;
+  border-radius: 16px;
+  box-shadow: 0 0 12px #1e3a8abb;
+  padding: 36px 28px 44px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+  color: #ccffcc;
+  display: none;
+  position: relative;
+  z-index: 11;
+}
+
+/* Hiển thị trang đang hoạt động với hiệu ứng mờ và dịch chuyển lên */
+.page.active {
+  opacity: 1;
+  transform: translateY(0);
+  display: block;
+}
+
+/*--- BANNER & AVATAR ---*/
+
+/* Container banner: nội dung căn giữa, flex dọc với khoảng cách */
+.banner {
+  text-align: center;
+  user-select: none;
+  color: #06b6d4;
+  position: relative;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 11;
+  position: relative;
+}
+
+/* Hình ảnh avatar với vị trí cố định ở giữa và giới hạn kích thước */
+.avatar {
+  max-width: 250px;
+  max-height: 250px;
+  min-width: 250px;
+  min-height: 250px;
+  border-radius: 50%;
+  border: 2px solid #1e3a8acc;
+  box-shadow: 0 0 24px #1e3a8a;
+  transition: box-shadow 0.36s ease, transform 0.36s ease;
+  object-fit: cover;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15; /* Để avatar luôn trên cùng */
+  margin-bottom: 0;
+}
+
+/* Hiệu ứng phóng to và bóng cho avatar khi hover và focus */
+.avatar:hover,
+.avatar:focus {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 40px #2563eb;
+}
+
+/*--- TYPED TEXT ---*/
+
+/* Tiêu đề chính được gõ */
+h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bolder;
+  font-size: 2.8rem;
+  text-shadow: 0 0 8px #1c3781;
+  margin-top: 180px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  z-index: 11;
+}
+
+/* Hiệu ứng nháy cho con trỏ trong văn bản gõ */
+.typed-cursor {
+  font-weight: bolder;
+  font-size: 2.8rem;
+  color: #06b6d4;
+  animation: blinkCursor 1.2s step-start infinite;
+  margin-left: 4px;
+  position: relative;
+  z-index: 11;
+}
+
+@keyframes blinkCursor {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Văn bản phụ dưới tiêu đề chính */
+.subtitle {
+  font-size: 1.15rem;
+  color: #059cb6;
+  font-weight: bolder;
+  font-style: italic;
+  margin-top: 10px;
+  margin-bottom: 0;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  z-index: 11;
+}
+
+/*--- HEADINGS ---*/
+
+/* Tiêu đề phụ */
+h2 {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 32px;
+  text-shadow: 0 0 10px #1e3a8a;
+  color: #06b6d4;
+  position: relative;
+  z-index: 11;
+}
+
+/* Hiệu ứng phát sáng cho tiêu đề */
+@keyframes glowEffect {
+  from {
+    text-shadow: 0 0 6px #1e3a8a, 0 0 12px #1e3a8abb, 0 0 25px #1e3a8acc;
+  }
+  to {
+    text-shadow: 0 0 12px #2563eb, 0 0 28px #2563ebcc, 0 0 40px #2563ebee;
+  }
+}
+
+/*--- CARDS ---*/
+
+/* Container thẻ chung */
+.card {
+  background: rgba(255 255 255 / 0.08);
+  border-radius: 18px;
+  box-shadow: 0 0 22px #1e3a8abb;
+  border: 1px solid #1e3a8a77;
+  padding: 30px 28px;
+  text-align: left;
+  animation: fadeSlideUp 0.8s ease forwards;
+  color: #ccffcc;
+  position: relative;
+  z-index: 11;
+}
+
+.card p {
+  font-size: 1.12rem;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+/* Container biểu tượng mạng xã hội */
+.social-icons a {
+  margin-right: 12px;
+  text-decoration: none;
+}
+.social-icons i {
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+.social-icons a:hover i {
+  color: #06b6d4;
+  cursor: pointer;
+}
+
+/* Thẻ kiểu phát sáng */
+.glow-card {
+  background: rgba(255 255 255 / 0.12);
+  box-shadow: 0 0 40px #1e3a8abb;
+  position: relative;
+  z-index: 11;
+}
+
+/* Các mục trong danh sách phát sáng */
+.glow-list li {
+  list-style: none;
+  padding: 10px 0;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #ccffcc;
+  text-shadow: 0 0 8px #1e3a8acc;
+  letter-spacing: 0.04em;
+  animation: fadeSlideUp 0.9s ease forwards;
+  position: relative;
+  z-index: 11;
+}
+
+/*--- PROGRESS BARS ---*/
+
+.progress-bar div {
+  margin-bottom: 26px;
+}
+
+.progress-bar span {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  display: block;
+  color: #ccffccdd;
+}
+
+.progress {
+  width: 100%;
+  height: 14px;
+  background: #111;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: inset 0 0 8px #1e3a8a88;
+  overflow: hidden;
+  position: relative;
+  z-index: 11;
+}
+
+.progress::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: var(--percent);
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  box-shadow: 0 0 14px #1e3a8a;
+  border-radius: 20px 0 0 20px;
+  transition: width 1.4s ease;
+  animation: fillProgress 1.4s ease both;
+}
+
+/*--- PROJECTS GRID ---*/
+
+/* Container dự án với các cột phản hồi */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  padding: 0 4px 20px 4px;
+  position: relative;
+  z-index: 11;
+}
+
+/* Thẻ dự án cá nhân với nền tối và bóng */
+.project {
+  background: #111;
+  border: 1px solid #1e3a8a77;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 20px #1e3a8acc;
+  transition: transform 0.3s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  animation: fadeSlideUp 1.2s ease forwards;
+  z-index: 11;
+}
+
+.project:hover,
+.project:focus-within {
+  transform: translateY(-12px);
+  box-shadow: 0 0 36px #2563eb;
+}
+
+.project img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  transition: filter 0.3s ease;
+  filter: drop-shadow(0 0 5px #1e3a8a88);
+}
+
+.project:hover img,
+.project:focus img {
+  filter: drop-shadow(0 0 14px #2563eb);
+}
+
+.project h3 {
+  color: #1e3a8a;
+  font-size: 1.35rem;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px #1e3a8acc;
+}
+
+.project p {
+  color: #aaffaa;
+  font-size: 1rem;
+  line-height: 1.48;
+}
+
+/* Kiểu biểu tượng vật liệu bên trong các đoạn văn của thẻ để căn chỉnh */
+.card p span.material-icons {
+  vertical-align: middle;
+  margin-right: 8px;
+  color: #2bbbd5dd;
+  font-size: 2rem;
+}
+
+/*--- HOBBIES GRID ---*/
+
+/* ID phần cho sở thích căn giữa tiêu đề */
+#so_thich {
+  text-align: center;
+  position: relative;
+  z-index: 11;
+}
+
+#so_thich h2 {
+  color: #aaffaa;
+}
+
+/* Container lưới cho sở thích với các cột phản hồi */
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+  padding: 0 20px;
+  justify-content: center;
+  position: relative;
+  z-index: 11;
+}
+
+/* Thẻ mục sở thích với nội dung căn giữa */
+.hobby-item {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #1e3a8acc;
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.4s ease;
+  box-shadow: 0 0 20px #1e3a8a88;
+  color: #ccffcc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 11;
+}
+
+.hobby-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px #2563eb;
+}
+
+/* Biểu tượng bên trong các mục sở thích */
+.hobby-item i {
+  font-size: 3.5rem;
+  color: #1da8c1;
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px #06b6d488;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.hobby-item:hover i {
+  color: #22d3ee;
+  text-shadow: 0 0 20px #22d3ee;
+}
+
+/* Tiêu đề mục sở thích */
+.hobby-item h3 {
+  font-size: 1.4rem;
+  color: #ccffcc;
+  font-weight: 600;
+  margin: 0;
+}
+
+/*--- FLIP CARD COMPONENT ---*/
+
+/* Container thẻ lật với độ sâu */
+.flip-card {
+  background-color: transparent;
+  width: 300px; /* Kích thước cố định */
+  height: 220px; /* Kích thước cố định */
+  perspective: 1000px; /* Để tạo hiệu ứng 3D */
+  margin: 0 auto; /* Căn giữa */
+  cursor: pointer;
+  position: relative;
+  z-index: 11; /* Đảm bảo trên cùng */
+}
+
+/* Container bên trong sẽ lật */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s; /* Hiệu ứng lật */
+  transform-style: preserve-3d; /* Giữ các mặt trong không gian 3D */
+}
+
+/* Thẻ lật khi đã lật */
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg); /* Lật 180 độ */
+}
+
+/* Kiểu cho mặt trước và mặt sau */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  backface-visibility: hidden; /* Ẩn mặt không nhìn thấy */
+  background: #282828;
+  color: #ccffcc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  z-index: 11; /* Đảm bảo mặt trước và mặt sau đều trên cùng */
+}
+
+/* Hình ảnh mặt trước của thẻ */
+.flip-card-front img {
+  width: 80%;
+  height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 0 20px #1e3a8a;
+  margin-bottom: 12px;
+}
+
+/* Tiêu đề mặt trước của thẻ */
+.flip-card-front h3 {
+  color: #06b6d4;
+  font-size: 1.3rem;
+  margin-top: 0;
+  text-shadow: 0 0 8px #1e3a8a;
+}
+
+/* Kiểu cho mặt sau của thẻ */
+.flip-card-back {
+  background: rgba(30, 58, 138, 0.9);
+  color: #aaffaa;
+  transform: rotateY(180deg); /* Đặt mặt sau ở vị trí lật */
+  font-size: 0.95rem;
+  line-height: 1.4;
+  padding: 20px;
+  text-align: left;
+}
+
+/* Tiêu đề mặt sau của thẻ */
+.flip-card-back h3 {
+  color: #06b6d4;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+/* Nút liên kết dự án */
+.project-link-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #06b6d4;
+  color: #0d0d0d;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.project-link-btn:hover,
+.project-link-btn:focus {
+  background: #11d2f4;
+  color: #ffffff;
+  outline: none;
+}
+
+/*--- FOOTER ---*/
+
+.footer {
+  flex-shrink: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 16px 0;
+  text-align: center;
+  color: #06b6d4;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 -2px 10px rgba(30, 58, 138, 0.5);
+  width: 100%;
+  margin-top: 40px;
+  position: relative;
+  z-index: 11;
+}
+
+/*--- RESPONSIVE STYLES ---*/
+
+/* Màn hình máy tính tối đa 768px */
+@media (max-width: 768px) {
+  .hobbies-grid {
+    grid-template-columns: 1fr;
+    padding: 0 10px;
+  }
+  .hobby-item {
+    padding: 25px 15px;
+  }
+  .hobby-item i {
+    font-size: 3rem;
+  }
+  .hobby-item h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Điều chỉnh padding cho main */
+  main {
+    padding: 0 16px 36px;
+  }
+
+  .nav-list {
+    gap: 16px;
+  }
+
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Màn hình di động nhỏ 480px max */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+  h2 {
+    font-size: 1.7rem;
+  }
+  .project h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/*--- ANIMATIONS ---*/
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fillProgress {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--percent);
+  }
+}
+
+@keyframes shoot {
+  0% {
+    transform: translateX(0) translateY(0) rotate(-45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-120px) translateY(120px) rotate(-45deg);
+    opacity: 0;
+  }
+}

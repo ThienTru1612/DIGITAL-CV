@@ -486,27 +486,316 @@ footer {
     }
 }
 
-.contact-info {
+#contact-info {
+    padding: 80px 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    background-color: #0c0017;
+    position: relative;
+    overflow: hidden;
+}
+
+#contact-info h2 {
+    font-size: 3.5em;
+    color: #bf00ff; /* Màu tím neon cơ bản */
+    margin-bottom: 50px;
+    text-align: center;
     width: 100%;
 }
 
-.contact-info p {
+.contact-wrapper {
     display: flex;
-    align-items: center;
+    justify-content: center; /* Căn giữa các item */
+    align-items: flex-start; /* Căn trên đầu các item */
+    gap: 400px; /* Khoảng cách giữa thông tin và form */
+    width: 100%;
+    max-width: 1500px; /* Chiều rộng tối đa của wrapper */
+    flex-wrap: wrap; /* Cho phép các item xuống dòng trên màn hình nhỏ */
+}
+
+.contact-details {
+    /* Loại bỏ các style tạo box */
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0; /* Đặt lại padding nếu cần */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transition: none; /* Bỏ hiệu ứng hover nếu không có box */
+
+    flex: 1; /* Cho phép item này co giãn */
+    min-width: 280px; 
+    max-width: 450px; 
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px; 
+    margin-top: 30px;
+}
+
+.contact-details h3 {
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px #bf00ff; 
+    width: 100%;
+    text-align: center;
+}
+
+.contact-details p {
     font-size: 20px;
     color: #fff;
     margin: 8px 0;
-    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    text-align: left;
+    width: 100%; 
 }
 
-.contact-info i {
+.contact-details p i {
     color: #bf00ff;
     font-size: 20px;
     margin-right: 15px;
+    min-width: 30px;
+    text-align: center;
+}
+
+.contact-form-container {
+    background: rgba(12, 0, 23, 0.85);
+    border: 1px solid #bf00ff;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(191, 0, 255, 0.6), inset 0 0 20px rgba(191, 0, 255, 0.3);
+    padding:  40px;
+    flex: 2; 
+    min-width: 320px;
+    max-width: 400px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    position: relative;
+    z-index: 5;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 50px rgba(191, 0, 255, 0.8), inset 0 0 25px rgba(191, 0, 255, 0.4);
+}
+
+.contact-form-container h3 {
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px #bf00ff;
+    width: 100%;
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-group label {
+    font-size: 1.1em;
+    color: #fff;
+    margin-bottom: 8px;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #1a0033;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(191, 0, 255, 0.2);
+    border: 1px solid transparent;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.input-wrapper:focus-within {
+    border-color: #bf00ff;
+    box-shadow: 0 0 25px rgba(191, 0, 255, 0.7);
+}
+
+.input-wrapper i {
+    color: #bf00ff;
+    font-size: 1.2em;
+    padding: 15px;
+    background-color: #15021b;
+    border-right: 1px solid rgba(191, 0, 255, 0.3);
+}
+
+.contact-form textarea {
+    min-height: 50px; 
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    flex-grow: 1;
+    padding: 1px 20px;
+    background: none;
+    border: none;
+    outline: none;
+    color: #e0e0e0;
+    font-size: 1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #a0a0a0;
+}
+
+.textarea-wrapper {
+    align-items: flex-start;
+}
+
+.textarea-wrapper i {
+    padding-top: 15px;
+}
+
+.send-button {
+    background: linear-gradient(90deg, #8a00ff, #bf00ff, #00d9ff);
+    color: #0c0017;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 18px 30px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(191, 0, 255, 0.5);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.send-button:hover {
+    background: linear-gradient(90deg, #bf00ff, #00d9ff, #8a00ff);
+    box-shadow: 0 0 40px rgba(191, 0, 255, 0.9), 0 0 60px rgba(0, 217, 255, 0.5);
+    transform: translateY(-3px);
+}
+
+.send-button:active {
+    transform: translateY(0);
+    box-shadow: 0 0 15px rgba(191, 0, 255, 0.4);
+}
+
+@media (max-width: 992px) {
+    .contact-wrapper {
+        flex-direction: column; /* Chuyển sang xếp chồng trên màn hình nhỏ hơn */
+        align-items: center; /* Căn giữa khi xếp chồng */
+    }
+
+    .contact-details,
+    .contact-form-container {
+        max-width: 500px; /* Giới hạn chiều rộng khi xếp chồng */
+        width: 90%; /* Chiếm phần lớn chiều rộng màn hình */
+        margin-bottom: 30px; /* Khoảng cách giữa 2 phần khi xếp chồng */
+    }
+    .contact-details h3, .contact-form-container h3 {
+        text-align: center;
+    }
+    .contact-details p {
+        text-align: center; /* Căn giữa văn bản thông tin liên hệ khi xếp chồng */
+        justify-content: center; /* Căn giữa icon và text */
+    }
+}
+
+@media (max-width: 768px) {
+    #contact-info {
+        padding: 60px 20px;
+    }
+
+    #contact-info h2 {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+
+    .contact-details,
+    .contact-form-container {
+    }
+
+    .contact-form {
+        gap: 20px;
+    }
+
+    .form-group label {
+        font-size: 1em;
+        margin-bottom: 5px;
+    }
+
+    .input-wrapper i {
+        font-size: 1.1em;
+        padding: 12px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 12px 15px;
+        font-size: 0.95em;
+    }
+
+    .send-button {
+        font-size: 1.3em;
+        padding: 15px 25px;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    #contact-info {
+        padding: 40px 15px;
+    }
+
+    #contact-info h2 {
+        font-size: 2em;
+        margin-bottom: 25px;
+    }
+
+    .contact-details,
+    .contact-form-container {
+    }
+
+    .contact-form {
+        gap: 15px;
+    }
+
+    .input-wrapper i {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+
+    .send-button {
+        font-size: 1.1em;
+        padding: 12px 20px;
+        border-radius: 10px;
+    }
 }
 
 /* Title sở thích */

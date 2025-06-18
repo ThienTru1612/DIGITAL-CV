@@ -14,7 +14,7 @@
         <div class="hero-content">
             <div class="hero-text">
                 <p class="greeting animate-fade-in-up">Xin chào, tôi là</p>
-                <h1 class="hero-name animate-fade-in-up delay-1">HUYNH VO HUYEN TRAN</h1>
+                <h1 class="hero-name animate-fade-in-up delay-1">HUYNH VO<br>HUYEN TRAN</h1>
                 <p class="hero-profession animate-fade-in-up delay-2"><span class="profession-text"></span><span class="typing-cursor">|</span></p>
                 <p class="hero-description animate-fade-in-up delay-3">
                     Welcom to my CV ✌🏻
@@ -269,6 +269,34 @@
         </footer>
     </div>
 
+    <button id="open-contact-form-btn" class="open-contact-form-btn">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <div class="contact-form-sidebar" id="contact-form-sidebar">
+        <button class="close-btn" id="close-contact-form-btn">&times;</button>
+        <h3>Gửi tin nhắn cho tôi</h3>
+        <form>
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> Tên</label>
+                <input type="text" id="name" placeholder="Tên của bạn" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" placeholder="Email của bạn" required>
+            </div>
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone"></i> Điện thoại</label>
+                <input type="tel" id="phone" placeholder="Số điện thoại của bạn">
+            </div>
+            <div class="form-group">
+                <label for="message"><i class="fas fa-comment-dots"></i> Tin nhắn</label>
+                <textarea id="message" rows="5" placeholder="Viết tin nhắn..."></textarea>
+            </div>
+            <button type="submit" class="send-btn">GỬI</button>
+        </form>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const body = document.body;
@@ -476,6 +504,23 @@
                 }
             }
             createRandomBackgroundIcons();
+
+            // Contact Form Sidebar Logic
+            const openContactFormBtn = document.getElementById('open-contact-form-btn');
+            const closeContactFormBtn = document.getElementById('close-contact-form-btn');
+            const contactFormSidebar = document.getElementById('contact-form-sidebar');
+
+            if (openContactFormBtn && closeContactFormBtn && contactFormSidebar) {
+                openContactFormBtn.addEventListener('click', () => {
+                    contactFormSidebar.classList.add('open');
+                    openContactFormBtn.classList.add('hidden'); // Hide the open button when sidebar is open
+                });
+
+                closeContactFormBtn.addEventListener('click', () => {
+                    contactFormSidebar.classList.remove('open');
+                    openContactFormBtn.classList.remove('hidden'); // Show the open button when sidebar is closed
+                });
+            }
         });
     </script>
 </body>

@@ -140,13 +140,51 @@
   </section>
  <!-- LIÊN HỆ -->
   <section id="contact-info" class="section">
-    <h2>Liên hệ</h2>
-    <div class="contact-info">
+  <h2>Liên hệ</h2>
+  <div class="contact-wrapper">
+    <div class="contact-details">
+      <h3>Thông tin liên hệ</h3>
       <p><i class="fas fa-phone"></i> 0346 484 951</p>
       <p><i class="fas fa-envelope"></i> thientru1612@gmail.com</p>
       <p><i class="fas fa-map-marker-alt"></i> Thới Tam Thôn, Hóc Môn, TP Hồ Chí Minh</p>
     </div>
-  </section>
+
+    <div class="contact-form-container">
+      <form class="contact-form">
+        <h3>Gửi tin nhắn cho tôi</h3>
+        <div class="form-group">
+          <label for="name">Tên</label>
+          <div class="input-wrapper">
+            <i class="fas fa-user"></i>
+            <input type="text" id="name" placeholder="Tên của bạn" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" placeholder="Email của bạn" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Số điện thoại</label>
+          <div class="input-wrapper">
+            <i class="fas fa-phone"></i>
+            <input type="tel" id="phone" placeholder="Số điện thoại" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Tin nhắn</label>
+          <div class="input-wrapper textarea-wrapper">
+            <i class="fas fa-comment"></i>
+            <textarea id="message" placeholder="Viết tin nhắn..." rows="5" required></textarea>
+          </div>
+        </div>
+        <button type="submit" class="send-button">GỬI</button>
+      </form>
+    </div>
+  </div>
+ </section>
  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 - Designed by Thien Tru</p>

@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>CV Hoàng Yến</title>
+        <title>CV Vũ Hoàng Yến - Chuyên gia Mạng máy tính & Truyền thông</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Quicksand&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Quicksand&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link rel="stylesheet" href="../css/style_cv_HoangYen.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -14,34 +14,39 @@
 
     <body>
         <canvas id="starry-bg" aria-hidden="true"></canvas>
-        <!--HEADER-->
-        <header class="header" role="banner">
+
+        <!-- HEADER -->
+        <header class="header" role="banner" aria-label="Điều hướng trang">
             <nav class="navbar" role="navigation" aria-label="Điều hướng chính">
-            <ul class="nav-list">
-                <li><a href="#home" class="nav-link active" data-target="home">Trang chủ</a></li>
-                <li><a href="#thongtin" class="nav-link" data-target="thongtin">Thông tin</a></li>
-                <li><a href="#sothich" class="nav-link" data-target="sothich">Sở thích</a></li>
-                <li><a href="#nghenghiep" class="nav-link" data-target="nghenghiep">Mục tiêu</a></li>
-                <li><a href="#ngonngu" class="nav-link" data-target="ngonngu">Ngôn ngữ</a></li>
-                <li><a href="#kynang" class="nav-link" data-target="kynang">Kỹ năng</a></li>
-                <li><a href="#duan" class="nav-link" data-target="duan">Dự án</a></li>
-                <li><a href="#lienhe" class="nav-link" data-target="lienhe">Liên hệ</a></li>
-            </ul>
+                <ul class="nav-list" role="menubar">
+                    <li role="none"><a href="#home" class="nav-link active" data-target="home" role="menuitem" tabindex="0">Trang chủ</a></li>
+                    <li role="none"><a href="#thongtin" class="nav-link" data-target="thongtin" role="menuitem" tabindex="-1">Thông tin</a></li>
+                    <li role="none"><a href="#sothich" class="nav-link" data-target="sothich" role="menuitem" tabindex="-1">Sở thích</a></li>
+                    <li role="none"><a href="#nghenghiep" class="nav-link" data-target="nghenghiep" role="menuitem" tabindex="-1">Mục tiêu</a></li>
+                    <li role="none"><a href="#ngonngu" class="nav-link" data-target="ngonngu" role="menuitem" tabindex="-1">Ngôn ngữ</a></li>
+                    <li role="none"><a href="#kynang" class="nav-link" data-target="kynang" role="menuitem" tabindex="-1">Kỹ năng</a></li>
+                    <li role="none"><a href="#duan" class="nav-link" data-target="duan" role="menuitem" tabindex="-1">Dự án</a></li>
+                    <li role="none"><a href="#lienhe" class="nav-link" data-target="lienhe" role="menuitem" tabindex="-1">Liên hệ</a></li>
+                </ul>
+                <div id="theme-toggle" role="button" tabindex="0" aria-label="Chuyển đổi giao diện sáng/tối" title="Chuyển đổi giao diện sáng/tối">
+                    <span class="material-icons">dark_mode</span>
+                </div>
             </nav>
         </header>
 
-        <!--MAIN-->
-        <main> 
-            <!--TRANG CHỦ-->
-            <section id="home" class="page active" tabindex="0" aria-label="Trang chủ">
-                <div class="banner">
-                    <img src="../images/images_cv_HoangYen.jpg" alt="Ảnh avatar Hoàng Yến" class="avatar" loading="lazy" />
-                    <h1><span class="typed" aria-live="polite" aria-atomic="true"></span><span class="typed-cursor">|</span></h1>
-                    <p class="subtitle">Sinh viên năm 2 chuyên nghành Mạng máy tính và truyền thông dữ liệu.</p>
+        <!-- MAIN -->
+        <main role="main">
+            <!-- TRANG CHỦ -->
+            <section id="home" class="page active" tabindex="0" aria-label="Trang chủ - Giới thiệu">
+                <div class="banner" aria-live="polite" aria-atomic="true">
+                    <img src="../images/images_cv_HoangYen.jpg" alt="Ảnh avatar chân dung Vũ Hoàng Yến, nữ sinh viên chuyên ngành Mạng máy tính" class="avatar" loading="lazy" />
+                    <h1 aria-live="polite" id="typed-intro"><span class="typed" aria-atomic="true"></span><span class="typed-cursor" aria-hidden="true">|</span></h1>
+                    <p class="subtitle">Sinh viên năm 2 chuyên ngành Mạng máy tính và truyền thông dữ liệu.</p>
+                    <button id="download-cv-btn" aria-label="Tải xuống CV Vũ Hoàng Yến">Tải CV PDF</button>
                 </div>
             </section>
 
-            <!--THÔNG TIN CÁ NHÂN-->
+            <!-- THÔNG TIN CÁ NHÂN -->
             <section id="thongtin" class="page" tabindex="0" aria-label="Thông tin cá nhân">
                 <h2><i class="fas fa-address-card"></i> Thông tin cá nhân</h2>
                 <div class="card">
@@ -50,9 +55,9 @@
                     <p><strong>MSSV:</strong> 072305008527</p>
                     <p><strong>Địa chỉ:</strong> Tân Chánh Hiệp, quận 12, Tp Hồ Chí Minh</p>
                     <p><strong>Học vấn:</strong> Sinh viên năm 2 chuyên ngành Mạng máy tính và truyền thông dữ liệu tại Trường Đại học Giao thông vận tải Tp Hồ Chí Minh.</p>
-                    <p><strong>Mạng xã hội:</strong>                            
+                    <p><strong>Mạng xã hội:</strong>
                         <a href="https://www.facebook.com/hoangyen.vu.33449?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                            <i class="fab fa-facebook-square" style="color: #1877F2; font-size: 1.5rem; margin-right:8px;"></i>
+                                <i class="fab fa-facebook-square" style="color: #1877F2; font-size: 1.5rem; margin-right:8px;"></i>
                         </a>
 
                         <a href="https://www.tiktok.com/@ensorens?_t=ZS-8xItI3txZU0&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
@@ -66,114 +71,156 @@
                 </div>
             </section>
 
-            <!--SỞ THÍCH-->
-            <section id="sothich" class="page" tabindex="0" aria-label="Sở thích">
-                <h2><i class="far fa-heart"></i> Sở thích</h2>
-                <div class="hobbies-grid">
-                    <div class="hobby-item">
-                        <i class="fas fa-music"></i> <h3>Nghe nhạc</h3>
-                    </div>
+            <!-- SỞ THÍCH -->
+            <section id="sothich" class="page" tabindex="0" aria-label="Sở thích cá nhân">
+                <h2><i class="far fa-heart" aria-hidden="true"></i> Sở thích</h2>
+                <div class="hobbies-grid" role="list" aria-label="Danh sách sở thích">
+                    <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" class="hobby-item" role="listitem" tabindex="0" aria-describedby="desc-nghenhac" title="Nghe nhạc trên Spotify">
+                        <i class="fas fa-music" aria-hidden="true"></i> <h3 id="desc-nghenhac">Nghe nhạc</h3>
+                    </a>
 
-                    <div class="hobby-item">
-                        <i class="fas fa-gamepad"></i> <h3>Chơi game</h3>
-                    </div>
+                    <a href="https://gamevui.com" target="_blank" rel="noopener noreferrer" class="hobby-item" role="listitem" tabindex="0" aria-describedby="desc-choigame" title="Chơi game giải trí">
+                        <i class="fas fa-gamepad" aria-hidden="true"></i> <h3 id="desc-choigame">Chơi game</h3>
+                    </a>
 
-                    <div class="hobby-item">
-                        <i class="fas fa-book"></i> <h3>Đọc sách</h3>
-                    </div>
+                    <a href="https://www.wattpad.com" target="_blank" rel="noopener noreferrer" class="hobby-item" role="listitem" tabindex="0" aria-describedby="desc-doctruyen" title="Đọc truyện trên Wattpad">
+                        <i class="fas fa-book" aria-hidden="true"></i> <h3 id="desc-doctruyen">Đọc truyện</h3>
+                    </a>
 
-                    <div class="hobby-item">
-                        <i class="fas fa-camera"></i> <h3>Chụp ảnh</h3>
-                    </div>
+                    <a href="https://www.youtube.com/results?search_query=em+xinh+say+hi" target="_blank" rel="noopener noreferrer" class="hobby-item" role="listitem" tabindex="0" aria-describedby="desc-xemyoutube" title="Xem Youtube">
+                        <i class="fab fa-youtube" aria-hidden="true"></i> <h3 id="desc-xemyoutube">Xem Youtube</h3>
+                    </a>
                 </div>
             </section>
 
-            <!--NGHỀ NGHIỆP-->
+            <!-- MỤC TIÊU NGHỀ NGHIỆP -->
             <section id="nghenghiep" class="page" tabindex="0" aria-label="Mục tiêu nghề nghiệp">
-                <h2><i class="fa fa-bullseye"></i> Mục tiêu nghề nghiệp</h2>
-                <div class="card">                        
-                    <p>Là một sinh viên năm 2 chuyên ngành Mạng máy tính và truyền thông dữ liệu, em mong muốn có cơ hội học hỏi thêm nhiều kỹ năng trau dồi bản thân và áp dụng những gì đã học vào các dự án thực tế.</p>
+                <h2><i class="fa fa-bullseye" aria-hidden="true"></i> Mục tiêu nghề nghiệp</h2>
+                <div class="card" role="region" aria-live="polite">
+                    <ul class="career-goals">
+                    <li><i class="fas fa-check-circle" style="color:#06b6d4; margin-right:8px;"></i> Học hỏi và áp dụng những điều được học vào các dự án thực tế</li>
+                    <li><i class="fas fa-check-circle" style="color:#06b6d4; margin-right:8px;"></i> Tham gia các dự án thực tế để nâng cao kinh nghiệm</li>
+                    <li><i class="fas fa-check-circle" style="color:#06b6d4; margin-right:8px;"></i> Phát triển kỹ năng lập trình Front-end và Back-end</li>
+                    <li><i class="fas fa-check-circle" style="color:#06b6d4; margin-right:8px;"></i> Phấn đấu tích lũy đủ tín chỉ để tốt nghiệp đúng hạn</li>
+                    </ul>
                 </div>
             </section>
 
-            <!--NGÔN NGỮ-->
-            <section id="ngonngu" class="page" tabindex="0" aria-label="Ngôn ngữ">
-                <h2><i class="fas fa-language"></i> Ngôn ngữ</h2>
-                <div class="card">
-                    <div class="progress-bar">
-                        <div><span>HTML</span><i class="fab fa-html5"></i><div class="progress" style="--percent: 90%"></div></div>
-                        <div><span>CSS</span><i class="fab fa-css3-alt"></i><div class="progress" style="--percent: 85%"></div></div>
-                        <div><span>JavaScript</span><i class="fab fa-js-square"></i><div class="progress" style="--percent: 75%"></div></div>
-                        <div><span>Java</span><i class="fab fa-java"></i><div class="progress" style="--percent: 70%"></div></div>
+            <!-- NGÔN NGỮ -->
+            <section id="ngonngu" class="page" tabindex="0" aria-label="Ngôn ngữ lập trình và công nghệ">
+                <h2><i class="fas fa-language" aria-hidden="true"></i> Ngôn ngữ</h2>
+                <div class="language-icons">
+                    <div class="language-item" title="HTML - Thành thạo 80%">
+                        <img src="https://placehold.co/64x64/ff6600/ffffff?text=HTML" alt="Biểu tượng HTML 5" />
+                        <span>HTML</span>
+                    </div>
+
+                    <div class="language-item" title="CSS - Thành thạo 75%">
+                        <img src="https://placehold.co/64x64/007acc/ffffff?text=CSS" alt="Biểu tượng CSS 3" />
+                        <span>CSS</span>
+                    </div>
+
+                    <div class="language-item" title="JavaScript - Thành thạo 75%">
+                        <img src="https://placehold.co/64x64/f0db4f/000000?text=JS" alt="Biểu tượng JavaScript" />
+                        <span>JavaScript</span>
+                    </div>
+
+                    <div class="language-item" title="Java - Thành thạo 70%">
+                        <img src="https://placehold.co/64x64/007396/ffffff?text=Java" alt="Biểu tượng Java" />
+                        <span>Java</span>
                     </div>
                 </div>
             </section>
 
-            <!--KỸ NĂNG-->
-            <section id="kynang" class="page" tabindex="0" aria-label="Kỹ năng">
-                <h2><i class="fas fa-briefcase"></i> Kỹ năng</h2>
-                <div class="card">
-                    <div class="progress-bar">
-                        <div><span>Quản lý thời gian</span><div class="progress" style="--percent: 85%"></div></div>
-                        <div><span>Giải quyết vấn đề</span><div class="progress" style="--percent: 80%"></div></div>
-                        <div><span>Làm việc nhóm</span><div class="progress" style="--percent: 88%"></div></div>
-                        <div><span>Tư duy sáng tạo</span><div class="progress" style="--percent: 85%"></div></div>
+            <!-- KỸ NĂNG -->
+            <section id="kynang" class="page" tabindex="0" aria-label="Kỹ năng nghề nghiệp">
+                <h2><i class="fas fa-briefcase" aria-hidden="true"></i> Kỹ năng</h2>
+                <div class="card" role="region" aria-live="polite">
+                    <div class="progress-bar" aria-label="Trình độ kỹ năng">
+                        <div data-percent="85%">
+                            <span>Quản lý thời gian</span>
+                            <div class="progress" style="--percent: 85%"></div>
+                        </div>
+
+                        <div data-percent="80%">
+                            <span>Giải quyết vấn đề</span>
+                            <div class="progress" style="--percent: 80%"></div>
+                        </div>
+
+                        <div data-percent="88%">
+                            <span>Làm việc nhóm</span>
+                            <div class="progress" style="--percent: 88%"></div>
+                        </div>
+
+                        <div data-percent="85%">
+                            <span>Tư duy sáng tạo</span>
+                            <div class="progress" style="--percent: 85%"></div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!--DỰ ÁN-->
+            <!-- DỰ ÁN HỌC TẬP -->
             <section id="duan" class="page" tabindex="0" aria-label="Dự án học tập">
-                <h2><i class="fas fa-sitemap"></i> Dự án học tập</h2>
-                <div class="projects">
-                    <div class="flip-card" tabindex="0" aria-label="Dự án Makeup Booking App">
+                <h2><i class="fas fa-sitemap" aria-hidden="true"></i> Dự án học tập</h2>
+                <div class="projects" role="list" aria-label="Danh sách dự án">
+                    <article class="flip-card" tabindex="0" aria-label="Dự án Makeup Booking App" role="listitem">
                         <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img src="../images/makeup-booking.png" alt="Giao diện ứng dụng Makeup Booking App" />
-                                <h3>Makeup Booking App</h3>
-                            </div>
-                            <div class="flip-card-back">
+                            <figure class="flip-card-front">
+                                <img src="../images/makeup-booking.png" alt="Giao diện ứng dụng Makeup Booking App hiển thị màn hình chính" />
+                                <figcaption><h3>Makeup Booking App</h3></figcaption>
+                            </figure>
+                            <section class="flip-card-back">
                                 <h3>Makeup Booking App</h3>
                                 <p><strong>Vai trò:</strong> Phát triển Hệ thống quản lý và Dashboard, thiết kế giao diện người dùng (React, Chart.js).</p>
                                 <p><strong>Công nghệ:</strong> Java Spring Boot, ReactJS, Chart.js</p>
                                 <div class="project-links" style="margin-top: 12px;">
-                                    <a href="https://github.com/TranKimDuyen321123/MAKEUP_BOOKING_APP" target="_blank" rel="noopener noreferrer" class="project-link-btn">Xem chi tiết</a>
+                                    <a href="https://github.com/TranKimDuyen321123/MAKEUP_BOOKING_APP" target="_blank" rel="noopener noreferrer" class="project-link-btn" aria-label="Xem chi tiết Makeup Booking App">Xem chi tiết</a>
                                 </div>
-                            </div>
+                            </section>
                         </div>
-                    </div>
+                    </article>
 
-                    <div class="flip-card" tabindex="0" aria-label="Dự án Web Quản lý học sinh">
+                    <article class="flip-card" tabindex="0" aria-label="Dự án Web Quản lý học sinh" role="listitem">
                         <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <img src="../images/managment-students.png" alt="Giao diện Web Quản lý học sinh" />
-                                <h3>Web Quản lý học sinh</h3>
-                            </div>
-                            <div class="flip-card-back">
+                            <figure class="flip-card-front">
+                                <img src="../images/managment-students.png" alt="Giao diện Web Quản lý học sinh hiển thị bảng điều khiển tổng quan" />
+                                <figcaption><h3>Web Quản lý học sinh</h3></figcaption>
+                            </figure>
+                            <section class="flip-card-back">
                                 <h3>Web Quản lý học sinh</h3>
                                 <p><strong>Vai trò:</strong> Phát triển Hệ thống quản lý và Dashboard, thiết kế giao diện người dùng (React, Chart.js).</p>
                                 <p><strong>Công nghệ:</strong> Java Spring Boot, ReactJS, Chart.js</p>
-                            </div>
+                            </section>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </section>
 
-            <!--LIÊN HỆ-->
-            <section id="lienhe" class="page" tabindex="0" aria-label="Liên hệ">
-                <h2><i class="fa fa-envelope"></i> Liên hệ</h2>
-                <div class="card">
-                    <p><span class="material-icons">email</span> <strong>Email:</strong> hoangyenvu658@gmail.com</p>
+            <!-- LIÊN HỆ -->
+            <section id="lienhe" class="page" tabindex="0" aria-label="Thông tin liên hệ">
+                <h2><i class="fa fa-envelope" aria-hidden="true"></i> Liên hệ</h2>
+                <div class="card" role="region" aria-live="polite">
+                    <form id="contact-form" aria-label="Form liên hệ" novalidate>
+                    <p><label for="contact-email"><span class="material-icons" aria-hidden="true" style="vertical-align: middle;">email</span> Email:</label><br />
+                    <input type="email" id="contact-email" name="email" required placeholder="Nhập email của bạn" aria-required="true" /></p>
+                    
+                    <p><label for="contact-message"><span class="material-icons" aria-hidden="true" style="vertical-align: middle;">message</span> Tin nhắn:</label><br />
+                    <textarea id="contact-message" name="message" required placeholder="Nhập tin nhắn của bạn" rows="4" aria-required="true"></textarea></p>
+                    
+                    <button type="submit">Gửi liên hệ</button>
+                    <p id="contact-feedback" role="alert" aria-live="assertive" style="color:#06b6d4; font-weight:600; margin-top:5px;"></p>
+                    </form>
                     <p><span class="material-icons">phone_iphone</span> <strong>Zalo:</strong> 0987654321</p>
                     <p><span class="material-icons">location_on</span> <strong>Địa chỉ:</strong> Tân Chánh Hiệp, quận 12, Tp Hồ Chí Minh</p>
                 </div>
-            </section>  
+            </section>
         </main>
 
-        <!--FOOTER-->
-        <footer class="footer">
+        <!-- FOOTER -->
+        <footer class="footer" role="contentinfo">
             <div class="footer-content">
-                <p>© 2025 Vũ Hoàng Yến</p>
+            <p>© 2025 Vũ Hoàng Yến.</p>
             </div>
         </footer>
 

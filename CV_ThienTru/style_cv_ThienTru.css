@@ -40,7 +40,6 @@ body {
     background-color: #0c0017;
     color: #fff;
     padding-top: 80px;
-    /* Space for fixed header */
 }
 
 /* Header / Navbar */
@@ -72,7 +71,7 @@ header.nav-header {
     font-weight: normal;
     font-size: 25px;
     padding-bottom: 6px;
-    /* THÊM: Transition cho transform */
+    /* Transition cho transform */
     transition: color 0.3s, width 0.3s ease-in-out, transform 0.3s ease;
 }
 
@@ -92,7 +91,7 @@ header.nav-header {
 .navbar-right a:hover,
 .navbar-right a.active {
     color: #bf00ff;
-    /* THÊM: Dịch chuyển lên 2px khi hover/active */
+    /* Dịch chuyển lên 2px khi hover/active */
     transform: translateY(-2px);
 }
 
@@ -155,13 +154,13 @@ header.nav-header {
 .social-icons a {
     color: #bf00ff;
     font-size: 40px;
-    /* THÊM: Transition cho transform và text-shadow */
+    /* Transition cho transform và text-shadow */
     transition: text-shadow 0.3s, transform 0.3s ease;
 }
 
 .social-icons a:hover {
     text-shadow: 0 0 10px #bf00ff;
-    /* THÊM: Hơi phóng to và xoay nhẹ khi hover */
+    /* Hơi phóng to và xoay nhẹ khi hover */
     transform: scale(1.1) rotate(5deg);
 }
 
@@ -175,17 +174,17 @@ header.nav-header {
     font-weight: bold;
     border-radius: 5px;
     text-decoration: none;
-    /* THÊM: Transition cho background-color và transform */
+    /* Transition cho background-color và transform */
     transition: background-color 0.3s, transform 0.3s ease;
 }
 
 .button-info:hover {
     background-color: #8401af;
-    /* THÊM: Hơi nghiêng theo trục X khi hover */
+    /* Hơi nghiêng theo trục X khi hover */
     transform: skewX(-5deg); /* Nghiêng 5 độ sang trái */
 }
 
-/* Avatar lớn bên phải (Adjusted for centering) */
+/* Avatar lớn bên phải */
 .avatar-fixed-right {
     position: relative;
     top: auto;
@@ -208,14 +207,14 @@ header.nav-header {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    /* THÊM: Transition cho transform và box-shadow */
+    /* Transition cho transform và box-shadow */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     position: relative; /* Quan trọng cho parallax */
     transform-style: preserve-3d; /* Giữ không gian 3D cho parallax */
 }
 
 .avatar-fixed-right .avatar-frame:hover {
-    /* THÊM: Hơi nâng lên và đổ bóng mạnh hơn khi hover */
+    /* Hơi nâng lên và đổ bóng mạnh hơn khi hover */
     transform: translateY(-5px);
     box-shadow: 0 0 50px #bf00ff, 0 0 80px rgba(191, 0, 255, 0.5);
 }
@@ -232,7 +231,7 @@ header.nav-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* DÒNG NÀY RẤT QUAN TRỌNG ĐÃ ĐƯỢC THÊM VÀO */
+    overflow: hidden; 
     animation: glow-shadow 3s ease-in-out infinite;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     position: relative;
@@ -240,7 +239,7 @@ header.nav-header {
 }
 
 .about-avatar .avatar-frame:hover {
-    /* THÊM: Hơi nâng lên và đổ bóng mạnh hơn khi hover (kết hợp với glow-shadow) */
+    /* Hơi nâng lên và đổ bóng mạnh hơn khi hover (kết hợp với glow-shadow) */
     transform: translateY(-5px);
     box-shadow: 0 0 20px #c107ff, 0 0 30px #c517ff; /* Đổ bóng mạnh hơn cho hover */
 }
@@ -262,12 +261,12 @@ header.nav-header {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    /* THÊM: Đặt vị trí tuyệt đối để dễ dàng điều khiển bằng JS */
+    /* Đặt vị trí tuyệt đối để dễ dàng điều khiển bằng JS */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); /* Canh giữa ảnh ban đầu */
-    /* THÊM: Transition cho transform để chuyển động mượt mà */
+    /* Transition cho transform để chuyển động mượt mà */
     transition: transform 0.2s ease-out; /* Tốc độ nhanh hơn một chút */
 }
 
@@ -326,7 +325,6 @@ header.nav-header {
     color: #bf00ff;
     width: 100%;
 }
-
 
 .section p,
 .section ul,
@@ -517,7 +515,7 @@ footer {
     gap: 100px;
     flex-wrap: wrap;
     width: 100%;
-    /* THÊM: Perspective để kích hoạt không gian 3D cho hobby cards */
+    /* Perspective để kích hoạt không gian 3D cho hobby cards */
     perspective: 1000px; /* Giá trị càng nhỏ, hiệu ứng 3D càng rõ */
 }
 
@@ -525,7 +523,7 @@ footer {
 .hobby-card {
     /* Đảm bảo transition đủ dài để thấy rõ hiệu ứng lật */
     transition: transform 0.5s ease, box-shadow 0.3s ease, opacity 0.8s ease-out; /* Tăng thời gian transition cho opacity */
-    transform-style: preserve-3d; /* RẤT QUAN TRỌNG cho hiệu ứng 3D */
+    transform-style: preserve-3d;
     background-color: #251c27;
     box-shadow: 0 0 10px #bf00ff;
     padding: 30px;
@@ -539,7 +537,7 @@ footer {
 
 /* Hiệu ứng hover cho card (bất kể trạng thái animation) */
 .hobby-card:hover {
-    /* THAY ĐỔI: Lật nhẹ theo trục Y và dịch chuyển */
+    /* Lật nhẹ theo trục Y và dịch chuyển */
     transform: translateY(-5px) rotateY(15deg); /* Lật 15 độ theo trục Y và nâng lên */
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5), 0 0 20px #bf00ff; /* Đổ bóng mạnh hơn */
 }
@@ -599,8 +597,6 @@ footer {
     width: 100%;
 }
 
-/* --- CÁC ĐIỀU CHỈNH CHÍNH CHO CÁC DỰ ÁN VÀ TIẾN ĐỘ --- */
-
 /* Section cha của cả 2 phần dự án và tiến độ */
 #du-an {
     padding: 60px 50px;
@@ -633,8 +629,6 @@ footer {
     background-color: #251a2e;
     box-shadow: 0 0 15px rgba(191, 0, 255, 0.24);
 }
-
-/* --- Bắt đầu: CSS mới cho hiệu ứng lật thẻ 3D của dự án --- */
 
 /* Container bao ngoài cho hiệu ứng lật của từng card dự án */
 .du-an-card-container {
@@ -671,8 +665,6 @@ footer {
     align-items: center;
     text-align: center;
     background: rgba(0, 0, 0, 0.6); /* Nền cho cả hai mặt */
-    /* Loại bỏ box-shadow ở đây vì nó đã được đặt ở .du-an-card-container */
-    /* Loại bỏ transition ở đây vì nó đã được đặt ở .du-an-card-container */
     flex-shrink: 0; /* Ngăn card bị co lại quá mức */
 }
 
@@ -743,8 +735,6 @@ footer {
     margin-top: 20px;
     font-size: 16px;
 }
-/* --- Kết thúc: CSS mới cho hiệu ứng lật thẻ 3D của dự án --- */
-
 
 /* Container riêng cho tiến độ của từng dự án */
 .status-card-standalone {
@@ -772,7 +762,7 @@ footer {
     text-align: center;
 }
 
-/* --- Biểu đồ sóng nước LẤP ĐẦY NGANG CÓ CHUYỂN ĐỘNG LÊN XUỐNG --- */
+/* Biểu đồ sóng nước */
 .doughnut-chart {
     position: relative;
     width: 160px;
@@ -807,7 +797,7 @@ footer {
     transition: left 1.5s ease-out;
 }
 
-/* Lớp sóng phụ (tạo gợn và độ sâu) */
+/* Lớp sóng phụ */
 .doughnut-chart::after {
     content: '';
     position: absolute;
@@ -853,7 +843,7 @@ footer {
 }
 
 
-/* MEDIA QUERIES cho Responsive */
+/* Media queries cho Responsive */
 @media (max-width: 900px) {
     /* Khi chiều rộng màn hình nhỏ hơn 900px */
     .project-item-pair {
@@ -868,7 +858,7 @@ footer {
         width: 100%;
         max-width: 300px;
     }
-    .du-an-card-container { /* Thêm margin-bottom cho container lật */
+    .du-an-card-container { /* Margin-bottom cho container lật */
         margin-bottom: 20px;
     }
 }
@@ -885,7 +875,7 @@ footer {
         font-size: 18px;
     }
     .intro-text {
-        margin-left: 0; /* Remove fixed margin for better centering on small screens */
+        margin-left: 0; 
     }
 }
 
@@ -953,4 +943,8 @@ footer {
 @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: #bf00ff; }
+}
+/* Emoticon */
+.emoticon-spacing {
+    margin-right: 15px;
 }
